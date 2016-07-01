@@ -1,0 +1,22 @@
+# depslib dependency file v1.0
+1467382589 source:/home/giuseppe/Desktop/ASD/structs/4.Insiemi/insiemi_lista/main.cpp
+	<iostream>
+	"insiemi_lista.h"
+
+1467382913 /home/giuseppe/Desktop/ASD/structs/4.Insiemi/insiemi_lista/insiemi_lista.h
+	"insieme.h"
+	"list_pointer.h"
+
+1467379613 /home/giuseppe/Desktop/ASD/structs/4.Insiemi/insiemi_lista/insieme.h
+	<iostream>
+
+1467358480 /home/giuseppe/Desktop/ASD/structs/4.Insiemi/insiemi_lista/list_pointer.h
+	"linear_list.h"
+	"cell.h"
+
+1467379014 /home/giuseppe/Desktop/ASD/structs/4.Insiemi/insiemi_lista/linear_list.h
+	<typeinfo>
+	<iostream>
+
+1448551739 /home/giuseppe/Desktop/ASD/structs/4.Insiemi/insiemi_lista/cell.h
+

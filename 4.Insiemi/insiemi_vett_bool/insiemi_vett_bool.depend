@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1467372000 source:/home/giuseppe/Desktop/ASD/structs/4.Insiemi/insiemi_vett_bool/main.cpp
+	<iostream>
+	"insieme_vett_bool.h"
+
+1467372215 /home/giuseppe/Desktop/ASD/structs/4.Insiemi/insiemi_vett_bool/insieme_vett_bool.h
+	"insieme.h"
+	<iostream>
+
+1467372215 /home/giuseppe/Desktop/ASD/structs/4.Insiemi/insiemi_vett_bool/insieme.h
+	<iostream>
+
