@@ -1,0 +1,24 @@
+# depslib dependency file v1.0
+1467644103 source:/home/giuseppe/Documents/github/algoritmi_strutture_dati/5.Dizionari/dizionario_trabocco/dizionario_trabocco/main.cpp
+	<iostream>
+	<string>
+	"hash_trabocco.h"
+	"list_pointer.h"
+
+1467642425 /home/giuseppe/Documents/github/algoritmi_strutture_dati/5.Dizionari/dizionario_trabocco/dizionario_trabocco/hash_trabocco.h
+	<string>
+	"dizionario.h"
+	"list_pointer.h"
+
+1467644214 /home/giuseppe/Documents/github/algoritmi_strutture_dati/5.Dizionari/dizionario_trabocco/dizionario_trabocco/dizionario.h
+
+1467639398 /home/giuseppe/Documents/github/algoritmi_strutture_dati/5.Dizionari/dizionario_trabocco/dizionario_trabocco/list_pointer.h
+	"linear_list.h"
+	"cell.h"
+
+1467644256 /home/giuseppe/Documents/github/algoritmi_strutture_dati/5.Dizionari/dizionario_trabocco/dizionario_trabocco/linear_list.h
+	<typeinfo>
+	<iostream>
+
+1448551739 /home/giuseppe/Documents/github/algoritmi_strutture_dati/5.Dizionari/dizionario_trabocco/dizionario_trabocco/cell.h
+
