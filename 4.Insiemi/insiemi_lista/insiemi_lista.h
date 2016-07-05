@@ -53,7 +53,7 @@ bool Insiemi_lista<T>::insiemeVuoto(){
 
 template <class T>
 bool Insiemi_lista<T>::appartiene(tipoelem x) const{
-    if(lista.linearSearch(x) == NULL)
+    if(lista.linear_search(x) == NULL)
         return false;
     else
         return true;
@@ -69,7 +69,7 @@ void Insiemi_lista<T>::inserisci(tipoelem x){
 
 template <class T>
 void Insiemi_lista<T>::cancella(tipoelem x){
-	auto p = lista.linearSearch(x);
+	auto p = lista.linear_search(x);
 	if (p != NULL)
         lista.erase(p);
 }

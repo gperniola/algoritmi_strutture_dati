@@ -155,21 +155,17 @@ List_pointer<T>& List_pointer<T>::operator = (const List_pointer<T> &l){
 template <class T>
 bool List_pointer<T>::operator == (const List_pointer<T> &l) const{
     List_pointer<T>::position p1, p2;
-    bool isEqual = true;
     p1 = l.begin();
     p2 = this->begin();
-
-    if(this->size() != l.size())
-        isEqual = false;
-
-    while(!this->end(p2) && isEqual == true){
+    while(!this->end(p2)){
         if((this->read(p2) != (l.read(p1))))
-            isEqual = false;
+            return false;
         p1 = l.next(p1);
         p2 = this->next(p2);
     }
-
-    return isEqual;
+    if (!l.end(p1))
+        return false;
+    return true;
     }
 
 

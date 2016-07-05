@@ -43,9 +43,11 @@ public:
     virtual void invert();
     virtual bool is_palindrome();
     virtual void insert_ordered(const value_type &);
+    virtual position linear_search(const value_type &) const;
     virtual position linear_ord_search (const value_type &);
     virtual void merge_ord(const Linear_list &, const Linear_list &); //merges the two lists inside the obj list
     static void merge_ord_2(Linear_list &, const Linear_list &); //static, merges the second list in the first one
+
     //TODO bool is_present( value_type) //returns if an element is present in the list.
     //MORE TO DO
 };
@@ -261,7 +263,20 @@ void Linear_list<T,P>::merge_ord_2(Linear_list &l1, const Linear_list &l2){
     }
 }
 
-
+template <class T, class P>
+typename Linear_list<T,P>::position Linear_list<T,P>::linear_search(const value_type &x) const{
+    Linear_list<T,P>::position p = this->begin();
+    bool trovato = false;
+    while (!this->end(p) && trovato == false){
+        if (x == this->read(p))
+            trovato = true;
+        else
+            p = this->next(p);
+    }
+    if (trovato == false)
+        p = NULL;
+    return p;
+}
 
 
 
