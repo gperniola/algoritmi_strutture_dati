@@ -2,6 +2,9 @@
 #define HASH_TRABOCCO_H_INCLUDED
 
 #include <string>
+#include <typeinfo>
+#include <iostream>
+
 #include "dizionario.h"
 #include "list_pointer.h"
 
@@ -25,7 +28,6 @@ public:
     int length = (int) the_key.length();
     for (int i=0; i<length; i++)
       hash_value = 5 * hash_value + the_key.at(i);
-     // cout << "key: " << the_key << "  hash: " << hash_value << " | ";
     return size_t(hash_value);
   }
 };
@@ -73,7 +75,7 @@ Hash_trabocco<K,E>::Hash_trabocco(int dimensione){
 
 template <class K, class E>
 Hash_trabocco<K,E>::~Hash_trabocco(){
-    for (int i = 0; i < dsize; i++)
+    for (int i = 0; i < divisor; i++)
         table[i].clear();
     delete[] table;
     }
@@ -82,65 +84,70 @@ template <class K, class E>
 void Hash_trabocco<K,E>::creaDizionario(){
     dsize = 0;
     table = new List_pointer<mypair<K,E>> [divisor];
-    for (int i = 0; i < divisor; i++ ){
-        //cout << "creating " << i << endl;
+    for (int i = 0; i < divisor; i++ )
         table[i].create();
-    }
 }
 
 template <class K, class E>
 bool Hash_trabocco<K,E>::dizionarioVuoto() const{
     return (dsize == 0);
-    }
+}
 
 template <class K, class E>
 int Hash_trabocco<K,E>::searchBucket(const K& the_key) const{
     int i;
     i = (int) hashm(the_key) % divisor;
-    //cout << "bucket: " << i << endl;
     return i;   // the home bucket
-    }
+}
 
 template <class K, class E>
 int Hash_trabocco<K,E>::size() const{
     return dsize;
-    }
+}
 
 template <class K, class E>
 bool Hash_trabocco<K,E>::appartiene(K& the_key) const{
     mypair<K,E> pair_in_list(the_key);
     typename List_pointer<mypair<K,E>>::position p;
     int i = searchBucket(the_key);   // the home bucket
-    //cout << endl << endl << "searching " << the_key << " in bucket " << i <<"..." << endl;
+
     p = table[i].linear_ord_search(pair_in_list);
     if (p != NULL)
         return true;
     return false;
-    }
+}
 
 
 template <class K, class E>
 void Hash_trabocco<K,E>::inserisci(mypair<K,E> the_pair){
-    if (!appartiene(the_pair.first)){
-        //mypair<K,E>* pair_ptr = &the_pair;
-        int b = searchBucket(the_pair.first);
-        //cout << "pos " << b << endl;
-        //typename List_pointer<mypair<K,E>>::position p = table[b].begin();
+
+    int b = searchBucket(the_pair.first);
+    auto p = table[b].linear_ord_search(the_pair);
+    if (p != NULL)
+        table[b].write(the_pair,p);
+    else{
         table[b].insert_ordered(the_pair);
-        //cout << "inserting " << pair_ptr->first << " " << pair_ptr->second << endl;
         dsize++;
-        }
     }
+}
 
 template <class K, class E>
 E Hash_trabocco<K,E>::recupera(K& the_key) const{
-    mypair<K,E> pair_in_list;
+    mypair<K,E> pair_in_list(the_key);
     typename List_pointer<mypair<K,E>>::position p;
     int i = searchBucket(the_key);   // the home bucket
     p = table[i].linear_ord_search(pair_in_list);
-    if (p != NULL)
-        return (table[i].read(p)).second;
-    return NULL;
+    E out;
+    if (p != NULL){
+        mypair<K,E> pair_;
+        pair_ = table[i].read(p);
+        out = pair_.second;
+        return out;
+    }
+    if(typeid(out) != typeid(string))
+        return NULL;
+    else
+        return "";
 }
 
 template <class K, class E>
@@ -171,6 +178,6 @@ void Hash_trabocco<K,E>::stampaDizionario() const{
             }
         }
         cout << "DICT SIZE: " << dsize << "  HASH TABLE SIZE: " << divisor << endl << endl;
-    }
+}
 
 #endif // HASH_TRABOCCO_H_INCLUDED
