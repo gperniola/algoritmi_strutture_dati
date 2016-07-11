@@ -24,6 +24,7 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="alberoBin.h" />
+		<Unit filename="alberoBinPunt.h" />
 		<Unit filename="cell.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
