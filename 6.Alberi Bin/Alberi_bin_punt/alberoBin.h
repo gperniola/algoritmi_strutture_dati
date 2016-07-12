@@ -41,38 +41,64 @@ public:
 
     virtual void print() const;
 
-    virtual int maxLivello() const;    //todo
-    virtual int dimAlbero(nodo) const; //todo
+    virtual int maxLivello() const;
+    virtual int dimAlbero(nodo) const;
 
 private:
     virtual void printSubTree(const nodo) const;
-    virtual int calcolaMaxLivello(int, nodo) const;
+    virtual int calcolaMaxLivello(nodo) const;
 
 
 
 };
 
+
+template <class T, class N>
+int AlberoBin<T,N>::dimAlbero(nodo n) const{
+    int dim = 0;
+    if(!alberoBinVuoto()){
+        dim++;
+        if (!sinVuoto(n))
+            dim = dim + dimAlbero(binFiglioSin(n));
+        if (!desVuoto(n))
+            dim = dim + dimAlbero(binFiglioDes(n));
+    }
+    return dim;
+
+}
+
+
 template <class T, class N>
 int AlberoBin<T,N>::maxLivello() const{
     int maxLvl = 0;
     if(!alberoBinVuoto()){
-        if (!sinVuoto(binRadice())){
-            int calc = calcolaMaxLivello(maxLvl, binFiglioSin(binRadice()));
-            if( calc > maxLvl)
-                maxLvl = calc;
-        }
+        if (!sinVuoto(binRadice()))
+            maxLvl = calcolaMaxLivello(binFiglioSin(binRadice()));
+
         if (!desVuoto(binRadice())){
-            int calc = calcolaMaxLivello(maxLvl, binFiglioDes(binRadice()));
+            int calc = calcolaMaxLivello(binFiglioDes(binRadice()));
             if( calc > maxLvl)
                 maxLvl = calc;
         }
+
     }
     return maxLvl;
+
 }
 
 template <class T, class N>
-int AlberoBin<T,N>::calcolaMaxLivello(int actualMax, nodo n) const{
+int AlberoBin<T,N>::calcolaMaxLivello(nodo n) const{
+    int maxLvl = 0;
 
+    if (!sinVuoto(n))
+            maxLvl = calcolaMaxLivello(binFiglioSin(n));
+
+        if (!desVuoto(n)){
+            int calc = calcolaMaxLivello(binFiglioDes(n));
+            if( calc > maxLvl)
+                maxLvl = calc;
+        }
+        return maxLvl + 1;
 
 
 

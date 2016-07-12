@@ -21,7 +21,7 @@ int main()
     */
 
 
-    int dim = 6;
+    int dim = 8;
     AlberoBinPunt<int> A[dim];
 
     for (int i = 0; i < dim; i++ ){
@@ -64,6 +64,8 @@ int main()
     cout << endl;
     A[0].inVisita(A[0].binRadice());
     cout << endl;
-
+    cout << "max livello: " << A[0].maxLivello() << endl;
+    cout << "dim da radice: " << A[0].dimAlbero(A[0].binRadice()) << endl;
+    cout << "dim da figlioSin di radice: " << A[0].dimAlbero(A[0].binFiglioSin(A[0].binRadice())) << endl;
     return 0;
 }
