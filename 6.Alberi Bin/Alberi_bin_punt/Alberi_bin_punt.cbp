@@ -26,6 +26,7 @@
 		<Unit filename="alberoBin.h" />
 		<Unit filename="alberoBinPunt.h" />
 		<Unit filename="cell.h" />
+		<Unit filename="exceptions.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

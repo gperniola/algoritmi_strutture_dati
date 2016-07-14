@@ -4,7 +4,7 @@
 
 #include "alberoBin.h"
 #include "cell.h"
-
+#include "exceptions.h"
 
 template <class T>
 class AlberoBinPunt : public AlberoBin<T, Cell<T>*>{
@@ -73,27 +73,38 @@ bool AlberoBinPunt<T>::alberoBinVuoto() const{
 
 template <class T>
 typename AlberoBinPunt<T>::nodo AlberoBinPunt<T>::binRadice() const {
-    return radice;
+    if(!alberoBinVuoto())
+        return radice;
+    else throw EmptyTree();
 }
 
 template <class T>
 typename AlberoBinPunt<T>::nodo AlberoBinPunt<T>::binPadre(nodo n) const{
-    return n->get_padre();
+    if(!alberoBinVuoto()){
+        if (n->get_livello() > 0)
+            return n->get_padre();
+        else return n;
+    }else throw EmptyTree();
 }
 
 template <class T>
 typename AlberoBinPunt<T>::nodo AlberoBinPunt<T>::binFiglioSin(nodo n) const{
-    return n->get_figlioSin();
+    if(!alberoBinVuoto() && !sinVuoto(n))
+        return n->get_figlioSin();
+    else throw EmptyTree();
 }
 
 template <class T>
 typename AlberoBinPunt<T>::nodo AlberoBinPunt<T>::binFiglioDes(nodo n) const{
-    return n->get_figlioDes();
+    if(!alberoBinVuoto() && !desVuoto(n))
+        return n->get_figlioDes();
+    else throw EmptyTree();
 }
 
 template <class T>
 bool AlberoBinPunt<T>::sinVuoto(nodo n) const{
-    if(n->get_figlioSin() == nullptr)
+
+    if(n->get_figlioSin() == nullptr || alberoBinVuoto())
         return true;
     else
         return false;
@@ -101,7 +112,7 @@ bool AlberoBinPunt<T>::sinVuoto(nodo n) const{
 
 template <class T>
 bool AlberoBinPunt<T>::desVuoto(nodo n) const{
-    if(n->get_figlioDes() == nullptr)
+    if(n->get_figlioDes() == nullptr || alberoBinVuoto())
         return true;
     else
         return false;
@@ -120,14 +131,14 @@ typename AlberoBinPunt<T>::tipoElem AlberoBinPunt<T>::leggiNodo(nodo n) const{
 
 template <class T>
 void AlberoBinPunt<T>::costrBinAlbero(AlberoBin<T,Cell<T>*>& A, AlberoBin<T,Cell<T>*>& B){
-    if (this->alberoBinVuoto()){
+    if (this->alberoBinVuoto())
         this->insBinRadice();
 
         if(!A.alberoBinVuoto())
             this->insFiglioSin(radice, A);
         if(!B.alberoBinVuoto())
             this->insFiglioDes(radice, B);
-    }
+
 
 }
 
@@ -154,6 +165,7 @@ void AlberoBinPunt<T>::cancsottoAlbero(nodo n){
         //cout << "deleting " << n->get_element() << "..." << endl;
         delete n;
         }
+        else throw EmptyTree();
 }
 
 template <class T>
@@ -162,40 +174,42 @@ void AlberoBinPunt<T>::insBinRadice(){
         radice = new Cell<T>();
         radice->set_livello(0);
     }
+    else throw RootExists();
 }
 
 template <class T>
 void AlberoBinPunt<T>::insFiglioSin(nodo n, AlberoBin<T,Cell<T>*>& A){
     if (n->get_figlioSin() == nullptr){
-        if(A.alberoBinVuoto())
-            A.insBinRadice();
+        if (!alberoBinVuoto()){
+            if(A.alberoBinVuoto())
+                A.insBinRadice();
 
-        nodo sinRad = A.binRadice();
-        sinRad->set_padre(n);
-        sinRad->set_livello(n->get_livello() + 1);
-        n->set_figlioSin(sinRad);
-    }
+            nodo sinRad = A.binRadice();
+            sinRad->set_padre(n);
+            sinRad->set_livello(n->get_livello() + 1);
+            n->set_figlioSin(sinRad);
+        } else throw EmptyTree();
+    } else throw NodeExists();
 }
 
 template <class T>
 void AlberoBinPunt<T>::insFiglioDes(nodo n, AlberoBin<T,Cell<T>*>& A){
     if (n->get_figlioDes() == nullptr){
-        if(A.alberoBinVuoto())
-            A.insBinRadice();
+        if (!alberoBinVuoto()){
+            if(A.alberoBinVuoto())
+                A.insBinRadice();
 
-        nodo desRad = A.binRadice();
-        desRad->set_padre(n);
-        desRad->set_livello(n->get_livello() + 1);
-        n->set_figlioDes(desRad);
-    }
+            nodo desRad = A.binRadice();
+            desRad->set_padre(n);
+            desRad->set_livello(n->get_livello() + 1);
+            n->set_figlioDes(desRad);
+        } else throw EmptyTree();
+    } else throw NodeExists();
 }
 
 template <class T>
 int AlberoBinPunt<T>::getLivello(nodo n) const{
     return n->get_livello();
 }
-
-
-
 
 #endif
