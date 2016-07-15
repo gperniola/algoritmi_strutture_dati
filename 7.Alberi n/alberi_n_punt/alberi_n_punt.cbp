@@ -23,6 +23,10 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="alberoN.h" />
+		<Unit filename="alberoNPunt.h" />
+		<Unit filename="cell.h" />
+		<Unit filename="exceptions.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

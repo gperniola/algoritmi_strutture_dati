@@ -126,13 +126,57 @@ void AlberoN<T,N>::printSubTree(const nodo n) const{
     std::cout << " ]";
 }
 
+template <class T, class N>
+int AlberoN<T,N>::maxLivello() const{
+    int maxLvl = 0;
+    if(!alberoVuoto()){
+        if (!foglia(radice())){
+            nodo m = primoFiglio(radice());
+            maxLvl = calcolaMaxLivello(m);
+            while(!ultimoFratello(m)){
+                m = succFratello(m);
+                int calc = calcolaMaxLivello(m);
+                if( calc > maxLvl)
+                    maxLvl = calc;
+            }
+        }
+    }
+    return maxLvl;
+}
 
+template <class T, class N>
+int AlberoN<T,N>::calcolaMaxLivello(nodo n) const{
+    int maxLvl = 0;
 
+    if (!foglia(n)){
+        nodo m = primoFiglio(n);
+        maxLvl = calcolaMaxLivello(m);
+        while(!ultimoFratello(m)){
+            m = succFratello(m);
+            int calc = calcolaMaxLivello(m);
+            if( calc > maxLvl)
+                maxLvl = calc;
+        }
+    }
+    return maxLvl + 1;
+}
 
-
-
-
-
+template <class T, class N>
+int AlberoN<T,N>::dimAlbero(nodo n) const{
+    int dim = 0;
+    if(!alberoVuoto()){
+        dim++;
+        if (!foglia(n)){
+            nodo m = primoFiglio(n);
+            dim = dim + dimAlbero(m);
+            while(!ultimoFratello(m)){
+                m = succFratello(m);
+                dim = dim + dimAlbero(m);
+            }
+        }
+    }
+    return dim;
+}
 
 
 #endif
