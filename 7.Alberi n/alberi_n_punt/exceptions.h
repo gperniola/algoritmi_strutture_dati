@@ -27,5 +27,10 @@ struct NodeExists : public std::domain_error {
         "Nodo già  presente.") {};
 };
 
+struct NoSons : public std::domain_error {
+    NoSons() : domain_error(
+        "Il nodo non ha figli.") {};
+};
+
 
 #endif

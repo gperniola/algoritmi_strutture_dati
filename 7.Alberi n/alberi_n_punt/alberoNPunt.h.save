@@ -168,8 +168,8 @@ void AlberoNPunt<T>::insSottoalbero(nodo n, AlberoN<T,N>& T){
 template <class T>
 void AlberoNPunt<T>::cancSottoalbero(nodo n){
    /**********TODO***************/
-
-
+   
+   
    /* if (!alberoVuoto()){
         if(foglia(n))
             delete n;
@@ -179,14 +179,6 @@ void AlberoNPunt<T>::cancSottoalbero(nodo n){
     }else throw EmptyTree();*/
 }
 
-template <class T>
-void AlberoNPunt<T>::scriviNodo(tipoElem e, nodo n) {
-    n->set_element(e);
-}
 
-template <class T>
-typename AlberoNPunt<T>::tipoElem AlberoNPunt<T>::leggiNodo(nodo n) const{
-    return n->get_element();
-}
 
 #endif

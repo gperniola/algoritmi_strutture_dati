@@ -17,6 +17,7 @@ public:
     virtual nodo radice()const = 0;
     virtual nodo padre(nodo)const = 0;
     virtual bool foglia(nodo)const = 0;
+    virtual bool ultimoFratello(nodo) const = 0;
     virtual nodo primoFiglio(nodo)const = 0;
     virtual nodo succFratello(nodo)const = 0;
 
