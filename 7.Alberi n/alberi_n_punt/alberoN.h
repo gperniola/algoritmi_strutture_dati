@@ -14,7 +14,7 @@ public:
 
     virtual void creaAlbero() = 0;
     virtual bool alberoVuoto() const = 0;
-    virtual nodo radice()const = 0;
+    virtual nodo getRadice()const = 0;
     virtual nodo padre(nodo)const = 0;
     virtual bool foglia(nodo)const = 0;
     virtual bool ultimoFratello(nodo) const = 0;
@@ -105,7 +105,7 @@ void AlberoN<T,N>::inVisita(nodo n, int i){
 template <class T, class N>
 void AlberoN<T,N>::print() const{
 	if (!this->alberoVuoto())
-		printSubTree(radice());
+		printSubTree(getRadice());
 	else
 		std::cout << "[]" << std::endl;
 	std::cout << std::endl;
@@ -131,8 +131,8 @@ template <class T, class N>
 int AlberoN<T,N>::maxLivello() const{
     int maxLvl = 0;
     if(!alberoVuoto()){
-        if (!foglia(radice())){
-            nodo m = primoFiglio(radice());
+        if (!foglia(getRadice())){
+            nodo m = primoFiglio(getRadice());
             maxLvl = calcolaMaxLivello(m);
             while(!ultimoFratello(m)){
                 m = succFratello(m);

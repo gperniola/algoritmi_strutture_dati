@@ -24,8 +24,8 @@ public:
 
     /*****setters*****/
     void set_element(value_type);
-    void set_figlioSin(Cell<T>*);
-    void set_figlioDes(Cell<T>*);
+    void set_primoFiglio(Cell<T>*);
+    void set_succFratello(Cell<T>*);
     void set_padre(Cell<T>*);
     void set_livello(int);
 

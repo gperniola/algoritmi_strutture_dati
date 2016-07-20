@@ -25,7 +25,7 @@ public:
     /*****operators*****/
     void creaAlbero();
     bool alberoVuoto() const;
-    nodo radice()const;
+    nodo getRadice()const;
     nodo padre(nodo)const;
     bool foglia(nodo)const;
     bool ultimoFratello(nodo)const;
@@ -35,8 +35,8 @@ public:
     void insRadice();
     void insRadice(nodo);
 
-    void insPrimoSottoalbero(nodo, AlberoN<T,N>&);
-    void insSottoalbero(nodo, AlberoN<T,N>&);
+    void insPrimoSottoalbero(nodo, AlberoN<T,Cell<T>*>&);
+    void insSottoalbero(nodo, AlberoN<T,Cell<T>*>&);
     void cancSottoalbero(nodo);
 
     void scriviNodo(tipoElem, nodo);
@@ -72,7 +72,7 @@ bool AlberoNPunt<T>::alberoVuoto() const{
 }
 
 template <class T>
-typename AlberoNPunt<T>::nodo AlberoNPunt<T>::radice() const {
+typename AlberoNPunt<T>::nodo AlberoNPunt<T>::getRadice() const {
     if(!alberoVuoto())
         return radice;
     else throw EmptyTree();
@@ -88,14 +88,14 @@ typename AlberoNPunt<T>::nodo AlberoNPunt<T>::padre(nodo n) const{
 }
 
 template <class T>
-typename AlberoNPunt<T>::bool AlberoNPunt<T>::foglia(nodo n) const{
+bool AlberoNPunt<T>::foglia(nodo n) const{
     if (n->get_primoFiglio() == nullptr)
         return true;
     else return false;
 }
 
 template <class T>
-typename AlberoNPunt<T>::bool AlberoNPunt<T>::ultimoFratello(nodo n) const{
+bool AlberoNPunt<T>::ultimoFratello(nodo n) const{
     if (n->get_succFratello() == nullptr)
         return true;
     else return false;
@@ -111,7 +111,7 @@ typename AlberoNPunt<T>::nodo AlberoNPunt<T>::primoFiglio(nodo n) const{
 }
 
 template <class T>
-typename AlberoNPunt<T>::bool AlberoNPunt<T>::succFratello(nodo n) const{
+typename AlberoNPunt<T>::nodo AlberoNPunt<T>::succFratello(nodo n) const{
         if(!alberoVuoto()){
             if(!ultimoFratello(n))
                 return n->get_succFratello();
@@ -138,30 +138,30 @@ void AlberoNPunt<T>::insRadice(nodo n){
 }
 
 template <class T>
-void AlberoNPunt<T>::insPrimoSottoalbero(nodo n, AlberoN<T,N>& T){
-    if (!alberoVuoto() && !T.alberoVuoto()){
+void AlberoNPunt<T>::insPrimoSottoalbero(nodo n, AlberoN<T,Cell<T>*>& A){
+    if (!alberoVuoto() && !A.alberoVuoto()){
         if(foglia(n)){
-            n->set_primoFiglio(T.radice());
+            n->set_primoFiglio(A.radice());
         }
         else{
-            T.radice()->set_succFratello(n->get_primoFiglio());
-            n->set_primoFiglio(T.radice());
+            A.radice()->set_succFratello(n->get_primoFiglio());
+            n->set_primoFiglio(A.radice());
         }
-        T.radice()->set_padre(n);
+        A.radice()->set_padre(n);
     }else throw EmptyTree();
 }
 
 template <class T>
-void AlberoNPunt<T>::insSottoalbero(nodo n, AlberoN<T,N>& T){
-        if (!alberoVuoto() && !T.alberoVuoto()){
+void AlberoNPunt<T>::insSottoalbero(nodo n, AlberoN<T,Cell<T>*>& A){
+        if (!alberoVuoto() && !A.alberoVuoto()){
             if(ultimoFratello(n)){
-                n->set_succFratello(T.radice());
+                n->set_succFratello(A.radice());
             }
             else{
-                T.radice()->set_succFratello(n->get_succFratello());
-                n->set_succFratello(T.radice());
+                A.radice()->set_succFratello(n->get_succFratello());
+                n->set_succFratello(A.radice());
             }
-            T.radice()->set_padre(n->get_padre());
+            A.radice()->set_padre(n->get_padre());
         }else throw EmptyTree();
 }
 
