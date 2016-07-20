@@ -167,16 +167,29 @@ void AlberoNPunt<T>::insSottoalbero(nodo n, AlberoN<T,N>& T){
 
 template <class T>
 void AlberoNPunt<T>::cancSottoalbero(nodo n){
-   /**********TODO***************/
-
-
-   /* if (!alberoVuoto()){
-        if(foglia(n))
-            delete n;
-
-
-
-    }else throw EmptyTree();*/
+    if (!alberoVuoto()){
+        if (padre(n) != nullptr){
+            if(primoFiglio(padre(n)) == n){
+            //è primofiglio
+                if(!ultimoFratello(n))
+                    padre(n)->set_primoFiglio(succFratello(n));
+            }else{
+            // è un figlio successivo e ha dei fratelli precedenti
+                nodo temp = primoFiglio(padre(n));
+                bool found = false;
+                while(!ultimoFratello(temp) && found == false){
+                    if(temp->get_succFratello() == n){
+                            temp->set_succFratello(n->get_succFratello());
+                            found = true;
+                    }
+                temp = temp->get_succFratello();
+                }
+            }
+        }
+        while(!foglia(n))
+            cancSottoalbero(primoFiglio(n));
+        delete n;
+    }else throw EmptyTree();
 }
 
 template <class T>
