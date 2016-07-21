@@ -124,7 +124,7 @@ void AlberoN<T,N>::printSubTree(const nodo n) const{
             printSubTree(m);
         }
     }
-    std::cout << " ]";
+    std::cout << "]";
 }
 
 template <class T, class N>

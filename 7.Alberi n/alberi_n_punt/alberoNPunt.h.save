@@ -46,6 +46,8 @@ public:
 
 private:
     nodo radice;
+
+    void aggiornaLivello(int, nodo);
 };
 
 template <class T>
@@ -55,7 +57,7 @@ AlberoNPunt<T>::AlberoNPunt() {
 
 template <class T>
 AlberoNPunt<T>::~AlberoNPunt(){
-    cancSottoalbero(radice);
+   // cancSottoalbero(radice);
 }
 
 template <class T>
@@ -141,13 +143,14 @@ template <class T>
 void AlberoNPunt<T>::insPrimoSottoalbero(nodo n, AlberoN<T,Cell<T>*>& A){
     if (!alberoVuoto() && !A.alberoVuoto()){
         if(foglia(n)){
-            n->set_primoFiglio(A.radice());
+            n->set_primoFiglio(A.getRadice());
         }
         else{
-            A.radice()->set_succFratello(n->get_primoFiglio());
-            n->set_primoFiglio(A.radice());
+            A.getRadice()->set_succFratello(n->get_primoFiglio());
+            n->set_primoFiglio(A.getRadice());
         }
-        A.radice()->set_padre(n);
+        A.getRadice()->set_padre(n);
+        aggiornaLivello(getLivello(n), n);
     }else throw EmptyTree();
 }
 
@@ -155,13 +158,14 @@ template <class T>
 void AlberoNPunt<T>::insSottoalbero(nodo n, AlberoN<T,Cell<T>*>& A){
         if (!alberoVuoto() && !A.alberoVuoto()){
             if(ultimoFratello(n)){
-                n->set_succFratello(A.radice());
+                n->set_succFratello(A.getRadice());
             }
             else{
-                A.radice()->set_succFratello(n->get_succFratello());
-                n->set_succFratello(A.radice());
+                A.getRadice()->set_succFratello(n->get_succFratello());
+                n->set_succFratello(A.getRadice());
             }
-            A.radice()->set_padre(n->get_padre());
+            A.getRadice()->set_padre(n->get_padre());
+            aggiornaLivello(getLivello(padre(n)) + 1, n);
         }else throw EmptyTree();
 }
 
@@ -201,5 +205,24 @@ template <class T>
 typename AlberoNPunt<T>::tipoElem AlberoNPunt<T>::leggiNodo(nodo n) const{
     return n->get_element();
 }
+
+template <class T>
+int AlberoNPunt<T>::getLivello(nodo n) const{
+    return n->get_livello();
+}
+
+template <class T>
+void AlberoNPunt<T>::aggiornaLivello(int liv, nodo n){
+    n->set_livello(liv);
+    if(!foglia(n)){
+        nodo son = primoFiglio(n);
+        aggiornaLivello(liv + 1, son);
+        while(!ultimoFratello(son)){
+            son = succFratello(son);
+            aggiornaLivello(liv + 1, son);
+        }
+    }
+}
+
 
 #endif

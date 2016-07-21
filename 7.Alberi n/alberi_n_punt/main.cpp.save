@@ -27,9 +27,7 @@ int main()
     D.scriviNodo(4,D.getRadice());
     B.insPrimoSottoalbero(B.getRadice(),D);
     A.print();
-
-    cout << A.leggiNodo(A.padre(D.getRadice())) << " è padre di " << A.leggiNodo(D.getRadice()) << endl;
-    cout << A.leggiNodo(A.padre(B.getRadice())) << " è padre di " << A.leggiNodo(B.getRadice()) << endl;
-    cout << A.leggiNodo(A.padre(C.getRadice())) << " è padre di " << A.leggiNodo(C.getRadice()) << endl;
+    
+    cout << A.leggiNodo(A.padre(D.getRadice())) << 
     return 0;
 }
