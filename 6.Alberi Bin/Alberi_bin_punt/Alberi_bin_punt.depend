@@ -1,0 +1,18 @@
+# depslib dependency file v1.0
+1468483664 source:/home/giuseppe/Documents/GitHub/algoritmi_strutture_dati/6.Alberi Bin/Alberi_bin_punt/main.cpp
+	<iostream>
+	"alberoBinPunt.h"
+
+1469105832 /home/giuseppe/Documents/GitHub/algoritmi_strutture_dati/6.Alberi Bin/Alberi_bin_punt/alberoBinPunt.h
+	"alberoBin.h"
+	"cell.h"
+	"exceptions.h"
+
+1468572722 /home/giuseppe/Documents/GitHub/algoritmi_strutture_dati/6.Alberi Bin/Alberi_bin_punt/alberoBin.h
+	<iostream>
+
+1468220565 /home/giuseppe/Documents/GitHub/algoritmi_strutture_dati/6.Alberi Bin/Alberi_bin_punt/cell.h
+
+1468482379 /home/giuseppe/Documents/GitHub/algoritmi_strutture_dati/6.Alberi Bin/Alberi_bin_punt/exceptions.h
+	<stdexcept>
+

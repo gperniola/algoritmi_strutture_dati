@@ -188,8 +188,9 @@ void AlberoBinPunt<T>::insFiglioSin(nodo n, AlberoBin<T,Cell<T>*>& A){
 
             nodo sinRad = A.binRadice();
             sinRad->set_padre(n);
+            aggiornaLivello(getLivello(n), )
+            sinRad->set_livello(n->get_livello() + 1);
             n->set_figlioSin(sinRad);
-            aggiornaLivello(getLivello(n) + 1, A.binRadice());
         } else throw EmptyTree();
     } else throw NodeExists();
 }
@@ -203,8 +204,8 @@ void AlberoBinPunt<T>::insFiglioDes(nodo n, AlberoBin<T,Cell<T>*>& A){
 
             nodo desRad = A.binRadice();
             desRad->set_padre(n);
+            desRad->set_livello(n->get_livello() + 1);
             n->set_figlioDes(desRad);
-            aggiornaLivello(getLivello(n) + 1, A.binRadice());
         } else throw EmptyTree();
     } else throw NodeExists();
 }
@@ -218,9 +219,9 @@ template <class T>
 void AlberoBinPunt<T>::aggiornaLivello(int liv, nodo n){
     n->set_livello(liv);
     if(!sinVuoto(n))
-        aggiornaLivello(liv + 1, binFiglioSin(n));
+        aggiornaLivello(liv + 1, binFiglioSin());
     if(!desVuoto(n))
-        aggiornaLivello(liv + 1, binFiglioDes(n));
+        aggiornaLivello(liv + 1, binFiglioDes());
 }
 
 

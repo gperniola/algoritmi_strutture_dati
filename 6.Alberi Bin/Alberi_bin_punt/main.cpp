@@ -23,12 +23,12 @@ int main()
         A[i].scriviNodo(i,A[i].binRadice());
     }
 
-    A[0].costrBinAlbero(A[1],A[2]);
+   // A[0].costrBinAlbero(A[1],A[2]);
 
 
     int s = 1;
     int i = 0;
-   /* bool sinVuoto = false;
+    bool sinVuoto = false;
     while (s < dim){
         if (sinVuoto == false){
             A[i].insFiglioSin(A[i].binRadice(),A[s]);
@@ -40,7 +40,7 @@ int main()
             i++;
         }
         s++;
-    }*/
+    }
 
 
     A[0].print();
@@ -58,6 +58,9 @@ int main()
     cout << endl;
     cout << "max livello: " << A[0].maxLivello() << endl;
     cout << "dim da radice: " << A[0].dimAlbero(A[0].binRadice()) << endl;
+
+    cout << A[0].leggiNodo(A[0].binPadre(A[3].binRadice())) << " è padre di " << A[0].leggiNodo(A[3].binRadice()) << endl;
+    cout << A[0].leggiNodo(A[0].binPadre(A[5].binRadice())) << " è padre di " << A[0].leggiNodo(A[5].binRadice()) << endl;
     //cout << "dim da figlioSin di radice: " << A[0].dimAlbero(A[0].binFiglioSin(A[0].binRadice())) << endl;
     return 0;
 }
