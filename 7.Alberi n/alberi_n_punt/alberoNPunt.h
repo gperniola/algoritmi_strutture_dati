@@ -57,7 +57,9 @@ AlberoNPunt<T>::AlberoNPunt() {
 
 template <class T>
 AlberoNPunt<T>::~AlberoNPunt(){
-   // cancSottoalbero(radice);
+    //cancSottoalbero(radice);
+    //cout << "deleting " << endl;
+    delete radice;
 }
 
 template <class T>
@@ -149,8 +151,8 @@ void AlberoNPunt<T>::insPrimoSottoalbero(nodo n, AlberoN<T,Cell<T>*>& A){
             A.getRadice()->set_succFratello(n->get_primoFiglio());
             n->set_primoFiglio(A.getRadice());
         }
-        A.getRadice()->set_padre(n);
         aggiornaLivello(getLivello(n), n);
+        A.getRadice()->set_padre(n);
     }else throw EmptyTree();
 }
 
@@ -164,36 +166,47 @@ void AlberoNPunt<T>::insSottoalbero(nodo n, AlberoN<T,Cell<T>*>& A){
                 A.getRadice()->set_succFratello(n->get_succFratello());
                 n->set_succFratello(A.getRadice());
             }
-            A.getRadice()->set_padre(n->get_padre());
-            aggiornaLivello(getLivello(padre(n)) + 1, padre(n));
+            aggiornaLivello(getLivello(padre(n)), padre(n));
+            A.getRadice()->set_padre(padre(n));
         }else throw EmptyTree();
 }
 
 template <class T>
 void AlberoNPunt<T>::cancSottoalbero(nodo n){
     if (!alberoVuoto()){
-        if (padre(n) != nullptr){
+       // cout << "albero non vuoto, ciclo " << leggiNodo(n) << endl;
+       // cout << "padre = n : " << leggiNodo(padre(n)) << " = " << leggiNodo(n) << "? " <<  (padre(n) == n) << endl;
+        if (padre(n) != n){
             if(primoFiglio(padre(n)) == n){
-            //è primofiglio
+                //cout << leggiNodo(n) << " è primofiglio di " << leggiNodo(padre(n)) << endl;
                 if(!ultimoFratello(n))
                     padre(n)->set_primoFiglio(succFratello(n));
+                else
+                    padre(n)->set_primoFiglio(nullptr);
             }else{
-            // è un figlio successivo e ha dei fratelli precedenti
+                //cout << leggiNodo(n) << " è succFiglio di " << leggiNodo(padre(n)) << endl;
                 nodo temp = primoFiglio(padre(n));
                 bool found = false;
                 while(!ultimoFratello(temp) && found == false){
                     if(temp->get_succFratello() == n){
+                        if(ultimoFratello(n))
+                            temp->set_succFratello(nullptr);
+                        else
                             temp->set_succFratello(n->get_succFratello());
-                            found = true;
+                        found = true;
                     }
                 temp = temp->get_succFratello();
+                //cout << "changed" << endl;
                 }
             }
         }
-        while(!foglia(n))
+        while(!foglia(n)){
+            //cout << leggiNodo(n) << " non è foglia..." << endl;
             cancSottoalbero(primoFiglio(n));
+            }
+       // cout << "è foglia, cancello " << leggiNodo(n) << endl;
         delete n;
-    }else throw EmptyTree();
+    }
 }
 
 template <class T>

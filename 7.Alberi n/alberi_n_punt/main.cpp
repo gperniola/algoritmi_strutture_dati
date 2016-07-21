@@ -18,18 +18,23 @@ int main()
     B.print();
     A.insPrimoSottoalbero(A.getRadice(),B);
     A.print();
-    n = new Cell<int>();
-    n->set_element(3);
-    C.insRadice(n);
-    A.insSottoalbero(B.getRadice(),C);
+    C.insRadice();
+    C.scriviNodo(3,C.getRadice());
+    B.insSottoalbero(B.getRadice(),C);
     A.print();
     D.insRadice();
     D.scriviNodo(4,D.getRadice());
     B.insPrimoSottoalbero(B.getRadice(),D);
-    A.print();
+    cout << "before delete: "; A.print();
 
     cout << A.leggiNodo(A.padre(D.getRadice())) << " è padre di " << A.leggiNodo(D.getRadice()) << endl;
     cout << A.leggiNodo(A.padre(B.getRadice())) << " è padre di " << A.leggiNodo(B.getRadice()) << endl;
     cout << A.leggiNodo(A.padre(C.getRadice())) << " è padre di " << A.leggiNodo(C.getRadice()) << endl;
+
+    cout << "max lvl: " << A.maxLivello() << "  dim: " << A.dimAlbero(A.getRadice()) << endl;
+    A.cancSottoalbero(B.getRadice());
+    cout << "after delete: "; A.print();
+    A.cancSottoalbero(A.getRadice());
+    cout << "after delete: "; A.print();
     return 0;
 }
