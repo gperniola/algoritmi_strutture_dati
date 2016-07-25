@@ -1,0 +1,13 @@
+#include <iostream>
+#include "CodaPAlberoBin.h"
+
+using namespace std;
+
+int main()
+{
+    CodaPAlberoBin<int> coda;
+    CODA
+    
+    cout << "Hello world!" << endl;
+    return 0;
+}

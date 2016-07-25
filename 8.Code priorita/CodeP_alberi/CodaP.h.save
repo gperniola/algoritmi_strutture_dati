@@ -1,0 +1,27 @@
+
+#ifndef _CODAP_H_
+#define _CODAP_H_
+
+#include "assert.h"
+
+template < class T > class CodaP {
+
+public:
+  typedef T tipoelem;
+
+  void creaPrioriCoda ();
+  void inserisci (_tipoelem);
+  _tipoelem min ();
+  void cancellaMin ();
+
+private:
+  int MAXLUNG;
+  _tipoelem *heap;
+  int ultimo;
+
+  void fixUp ();
+  void fixDown (int, int);
+};
+
+
+#endif /* _CODAP_H_ */
