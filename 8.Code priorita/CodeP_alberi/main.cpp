@@ -15,6 +15,6 @@ int main()
     coda.inserisci(6);
     coda.inserisci(1);
     coda.print();
-    cout << "Hello world!" << endl;
+    cout << coda.min() << endl;
     return 0;
 }
