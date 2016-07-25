@@ -1,9 +1,9 @@
 # depslib dependency file v1.0
-1469441587 source:/home/giuseppe/Documents/GitHub/algoritmi_strutture_dati/8.Code priorita/CodeP_alberi/main.cpp
+1469450918 source:/home/giuseppe/Documents/GitHub/algoritmi_strutture_dati/8.Code priorita/CodeP_alberi/main.cpp
 	<iostream>
 	"CodaPAlberoBin.h"
 
-1469443268 /home/giuseppe/Documents/GitHub/algoritmi_strutture_dati/8.Code priorita/CodeP_alberi/CodaPAlberoBin.h
+1469451048 /home/giuseppe/Documents/GitHub/algoritmi_strutture_dati/8.Code priorita/CodeP_alberi/CodaPAlberoBin.h
 	"CodaP.h"
 	"alberoBinPunt.h"
 
