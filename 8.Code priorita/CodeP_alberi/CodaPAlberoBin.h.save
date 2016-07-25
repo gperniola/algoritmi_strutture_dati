@@ -64,12 +64,39 @@ void CodaPAlberoBin<T>::inserisci(tipoElem e) {
         alberoCoda.scriviNodo(e,newAlbero->binRadice());
         alberoCoda.insFiglioSin(alberoCoda.binRadice(), *newAlbero);
         ultimo = alberoCoda.binFiglioSin(alberoCoda.binRadice());
-    }else{
-        int passiUp = 0;
-        
-    
+    }else if(ultimo == alberoCoda.binFiglioSin(alberoCoda.binPadre(ultimo))){ //caso3: è un figlio sin di un nodo, inserisce in fratello des
+        cout << "inserting " << e << " in right brother" << endl;
+        AlberoBinPunt<T> *newAlbero = new AlberoBinPunt<T>();
+        newAlbero->insBinRadice();
+        alberoCoda.scriviNodo(e,newAlbero->binRadice());
+        alberoCoda.insFiglioDes(alberoCoda.binPadre(ultimo), *newAlbero);
+        ultimo = alberoCoda.binFiglioDes(alberoCoda.binPadre(ultimo));
+    }else{ //caso4: è un nodo destro, deve salire fino a radire e creare un nuovo livello oppure fino a che non è figliosin di qualche nodo
+        typename AlberoBinPunt<T>::nodo temp = ultimo;
+        while(temp == alberoCoda.binFiglioDes(alberoCoda.binPadre(temp)) && temp != alberoCoda.binRadice()){
+            cout << "up one" << endl;
+            temp = alberoCoda.binPadre(temp);
+        }
+        if(temp == alberoCoda.binRadice()){ //ha raggiunto radice, inserisce un nuovo sin in fondo
+            while(!alberoCoda.sinVuoto(temp))
+                temp = alberoCoda.binFiglioSin(temp);
+            cout << "inserting " << e << " in new level left" << endl;
+            AlberoBinPunt<T> *newAlbero = new AlberoBinPunt<T>();
+            newAlbero->insBinRadice();
+            alberoCoda.scriviNodo(e,newAlbero->binRadice());
+            alberoCoda.insFiglioSin(temp, *newAlbero);
+            ultimo = alberoCoda.binFiglioSin(temp);
+        }else{
+            temp = alberoCoda.binFiglioDes(binPadre(temp));
+            while(!alberoCoda.sinVuoto(temp))
+                temp = alberoCoda.binFiglioSin(temp);
+            AlberoBinPunt<T> *newAlbero = new AlberoBinPunt<T>();
+            newAlbero->insBinRadice();
+            alberoCoda.scriviNodo(e,newAlbero->binRadice());
+            alberoCoda.insFiglioSin(temp, *newAlbero);
+            ultimo = alberoCoda.binFiglioSin(temp);
+        }
     }
-
 }
 
 template <class T>
