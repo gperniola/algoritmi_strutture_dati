@@ -1,15 +1,15 @@
 # depslib dependency file v1.0
-1469545079 source:/home/giuseppe/Documents/github/algoritmi_strutture_dati/8.Code priorita/CodeP_alberi/main.cpp
+1469550384 source:/home/giuseppe/Documents/github/algoritmi_strutture_dati/8.Code priorita/CodeP_alberi/main.cpp
 	<iostream>
 	"CodaPAlberoBin.h"
 
-1469545919 /home/giuseppe/Documents/github/algoritmi_strutture_dati/8.Code priorita/CodeP_alberi/CodaPAlberoBin.h
+1469551657 /home/giuseppe/Documents/github/algoritmi_strutture_dati/8.Code priorita/CodeP_alberi/CodaPAlberoBin.h
 	"CodaP.h"
 	"alberoBinPunt.h"
 
 1469525373 /home/giuseppe/Documents/github/algoritmi_strutture_dati/8.Code priorita/CodeP_alberi/CodaP.h
 
-1469542938 /home/giuseppe/Documents/github/algoritmi_strutture_dati/8.Code priorita/CodeP_alberi/alberoBinPunt.h
+1469549812 /home/giuseppe/Documents/github/algoritmi_strutture_dati/8.Code priorita/CodeP_alberi/alberoBinPunt.h
 	"alberoBin.h"
 	"cell.h"
 	"exceptions.h"
@@ -17,7 +17,7 @@
 1469525373 /home/giuseppe/Documents/github/algoritmi_strutture_dati/8.Code priorita/CodeP_alberi/alberoBin.h
 	<iostream>
 
-1469539846 /home/giuseppe/Documents/github/algoritmi_strutture_dati/8.Code priorita/CodeP_alberi/cell.h
+1469551257 /home/giuseppe/Documents/github/algoritmi_strutture_dati/8.Code priorita/CodeP_alberi/cell.h
 
 1469525373 /home/giuseppe/Documents/github/algoritmi_strutture_dati/8.Code priorita/CodeP_alberi/exceptions.h
 	<stdexcept>

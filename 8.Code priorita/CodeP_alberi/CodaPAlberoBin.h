@@ -34,7 +34,7 @@ private:
     nodo ultimo;
 
     //void fixUp ();
-    void fixDown();
+    void fixDown(nodo);
     void switchElem(nodo, nodo);
 };
 
@@ -122,98 +122,108 @@ typename CodaPAlberoBin<T>::tipoElem CodaPAlberoBin<T>::min() {
 
 template <class T>
 void CodaPAlberoBin<T>::cancellaMin() {
+
     if(!alberoCoda.alberoBinVuoto()){
-
-        tipoElem last_elem;
-
-        if(ultimo == alberoCoda.binRadice()){ //l'albero ha solo la radice, cancello l'albero
-            cout << "do" << endl;
+        /*** l'albero ha solo la radice, cancello l'albero ***/
+        if(ultimo == alberoCoda.binRadice()){
             ultimo = nullptr;
             alberoCoda.cancsottoAlbero(alberoCoda.binRadice());
-        }else if(ultimo == alberoCoda.binFiglioSin(alberoCoda.binPadre(ultimo))){
-            cout << "do2" << endl;
-            last_elem = alberoCoda.leggiNodo(ultimo);
-            //alberoCoda.scriviNodo(alberoCoda.leggiNodo(ultimo), alberoCoda.binRadice());
+        }
+        else{
+            /*** salviamo il contenuto di ultimo ***/
+            tipoElem last_elem = alberoCoda.leggiNodo(ultimo);
             nodo temp = ultimo;
-            while(temp == alberoCoda.binFiglioSin(alberoCoda.binPadre(temp)) && temp != alberoCoda.binRadice()){
-                cout << "up one" << endl;
-                temp = alberoCoda.binPadre(temp);
-            }
-            if(temp == alberoCoda.binRadice()){ //ha raggiunto radice, inserisce un nuovo sin in fondo
-                        cout << "do21" << endl;
-                while(!alberoCoda.desVuoto(temp))
-                    temp = alberoCoda.binFiglioDes(temp);
-                //cout << "inserting " << e << " in new level left" << endl;
-                alberoCoda.cancsottoAlbero(ultimo);
-                ultimo = temp;
-                delete temp;
-            }else{
-                        cout << "do22" << endl;
-                temp = alberoCoda.binFiglioSin(alberoCoda.binPadre(temp));
-                while(!alberoCoda.desVuoto(temp))
-                    temp = alberoCoda.binFiglioDes(temp);
-                //cout << "inserting " << e << " in left node of a right brother" << endl;
-                alberoCoda.cancsottoAlbero(ultimo);
-                ultimo = temp;
-                delete temp;
-            }
-        }
-        else if(ultimo == alberoCoda.binFiglioDes(alberoCoda.binPadre(ultimo))){
-            alberoCoda.scriviNodo(alberoCoda.leggiNodo(ultimo), alberoCoda.binRadice());
-            typename AlberoBinPunt<T>::nodo temp = alberoCoda.binFiglioSin(alberoCoda.binPadre(ultimo));
-            alberoCoda.cancsottoAlbero(ultimo);
-            ultimo = temp;
-            delete temp;
-        }
-        cout  << "update" << endl;
-        // FASE 2 DI AGGIUSTAMENTO
-        alberoCoda.scriviNodo(last_elem,alberoCoda.binRadice());
-        bool exit_loop = false;
-        nodo temp;
-        if(alberoCoda.alberoBinVuoto())
-            exit_loop = true;
-        else
-            temp = alberoCoda.binRadice();
-        while(!exit_loop){
-            if(alberoCoda.sinVuoto(temp))
-                exit_loop = true;
-            else if(alberoCoda.desVuoto(temp)){
-                if(alberoCoda.leggiNodo(temp) > alberoCoda.leggiNodo(alberoCoda.binFiglioSin(temp))){
-                    switchElem(temp, alberoCoda.binFiglioSin(temp));
-                    temp = alberoCoda.binFiglioSin(temp);
-                }else exit_loop = true;
-            }else{
-                if (alberoCoda.leggiNodo(alberoCoda.binFiglioSin(temp)) < alberoCoda.leggiNodo(alberoCoda.binFiglioDes(temp))){
-                    //scambia con figliosin
-                    if(alberoCoda.leggiNodo(temp) > alberoCoda.leggiNodo(alberoCoda.binFiglioSin(temp))){
-                        switchElem(temp, alberoCoda.binFiglioSin(temp));
-                        temp = alberoCoda.binFiglioSin(temp);
-                    }else exit_loop = true;
-                }else{
-                    //scambia con figliodes
-                    if(alberoCoda.leggiNodo(temp) > alberoCoda.leggiNodo(alberoCoda.binFiglioDes(temp))){
-                        switchElem(temp, alberoCoda.binFiglioDes(temp));
+
+            /*** l'albero ha dei figli, controlliamo se ultimo è un figlioSin ***/
+            if(ultimo == alberoCoda.binFiglioSin(alberoCoda.binPadre(ultimo))){
+
+                /*** risaliamo l'albero finchè il nodo è un figlioSin o fino a raggiungere la radice ***/
+                while(temp == alberoCoda.binFiglioSin(alberoCoda.binPadre(temp)) && temp != alberoCoda.binRadice())
+                    temp = alberoCoda.binPadre(temp);
+
+                /*** se abbiamo raggiunto la radice scendiamo da figlioDes ***/
+                if(temp == alberoCoda.binRadice()){
+                    cout << "do21" << endl;
+                    while(!alberoCoda.desVuoto(temp))
                         temp = alberoCoda.binFiglioDes(temp);
-                    }else exit_loop = true;
+                }
+
+                /*** altrimenti se siamo diventati un figlioDes di qualche nodo passiamo al figlioSin
+                del padre e scendiamo dai figliDes ***/
+                else{
+                    cout << "do22" << endl;
+                    temp = alberoCoda.binFiglioSin(alberoCoda.binPadre(temp));
+                    while(!alberoCoda.desVuoto(temp))
+                        temp = alberoCoda.binFiglioDes(temp);
+                }
+            }
+
+            /*** altrimenti è un figlio destro, quindi il nuovo ultimo sarà il figlioSin del padre ***/
+            else{
+                temp = alberoCoda.binFiglioSin(alberoCoda.binPadre(ultimo));
+            }
+
+            /*** cancelliamo il nodo in più e settiamo un nuovo ultimo ***/
+            cout << "rad sin " << alberoCoda.leggiNodo(alberoCoda.binFiglioSin(alberoCoda.binRadice())) << endl;
+            alberoCoda.cancsottoAlbero(ultimo);
+
+            ultimo = temp;
+            cout << "rad sin " << alberoCoda.leggiNodo(alberoCoda.binFiglioSin(alberoCoda.binRadice())) << endl;
+            //delete temp;
+
+            cout  << "update" << endl;
+            /*** FASE 2 DI AGGIUSTAMENTO DELLA PRIORITA' ***/
+            alberoCoda.scriviNodo(last_elem,alberoCoda.binRadice());
+            fixDown(alberoCoda.binRadice());
+        }
+    }
+}
+
+
+template <class T>
+void CodaPAlberoBin<T>::fixDown(nodo n) {
+    /*** assicuriamoci che n non sia un nodo foglia ma abbia dei figli con cui confrontarsi ***/
+    if(!alberoCoda.sinVuoto(n)){
+        /*** figlioDes è vuoto, quindi il nodo ha solo figlioSin per confronto priorità ***/
+        if(alberoCoda.desVuoto(n)){
+            if(alberoCoda.leggiNodo(n) > alberoCoda.leggiNodo(alberoCoda.binFiglioSin(n))){
+                cout << "right empty: " << alberoCoda.leggiNodo(n) << " > " << alberoCoda.leggiNodo(alberoCoda.binFiglioSin(n)) << endl;
+                switchElem(n, alberoCoda.binFiglioSin(n));
+                fixDown(alberoCoda.binFiglioSin(n));
+            }
+        }
+        /*** figlioDes è occupato, quindi dobbiamo scambiare n con chi ha priorità piu' alta tra i figli ***/
+        else{
+            /*** controlliamo se figlioSin ha priorità più alta di figlioDes ***/
+            if (alberoCoda.leggiNodo(alberoCoda.binFiglioSin(n)) < alberoCoda.leggiNodo(alberoCoda.binFiglioDes(n))){
+                cout << alberoCoda.leggiNodo(n) << " -> " << alberoCoda.leggiNodo(alberoCoda.binFiglioSin(n)) << " < " << alberoCoda.leggiNodo(alberoCoda.binFiglioDes(n)) << " ?" << endl;
+                if(alberoCoda.leggiNodo(n) > alberoCoda.leggiNodo(alberoCoda.binFiglioSin(n))){
+                    switchElem(n, alberoCoda.binFiglioSin(n));
+                    fixDown(alberoCoda.binFiglioSin(n));
+                }
+            }
+            /*** figlioDes ha priorità più alta di figlioSin, confrontiamolo con n ***/
+            else{
+                if(alberoCoda.leggiNodo(n) > alberoCoda.leggiNodo(alberoCoda.binFiglioDes(n))){
+                    switchElem(n, alberoCoda.binFiglioDes(n));
+                    fixDown(alberoCoda.binFiglioDes(n));
                 }
             }
         }
     }
 }
 
+
+template <class T>
+void CodaPAlberoBin<T>::print() {
+    alberoCoda.print();
+}
+
+
 template <class T>
 void CodaPAlberoBin<T>::switchElem(nodo n, nodo m) {
     tipoElem temp_e = alberoCoda.leggiNodo(n);
     alberoCoda.scriviNodo(alberoCoda.leggiNodo(m), n);
     alberoCoda.scriviNodo(temp_e, m);
-}
-
-template <class T>
-void CodaPAlberoBin<T>::fixDown() {
-}
-
-template <class T>
-void CodaPAlberoBin<T>::print() {
-    alberoCoda.print();
 }
 #endif

@@ -64,9 +64,9 @@ Cell<T>::Cell(value_type &value, Cell<T>* p, Cell<T>* n){
 
 template <class T>
 Cell<T>::~Cell(){
-    this->figlioSin = nullptr;
-    this->figlioDes = nullptr;
-    this->padre = nullptr;
+    //this->figlioSin = nullptr;
+    //this->figlioDes = nullptr;
+    //this->padre = nullptr;
 }
 
 template <class T>
