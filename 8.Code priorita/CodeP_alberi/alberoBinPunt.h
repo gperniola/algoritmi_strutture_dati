@@ -57,7 +57,7 @@ AlberoBinPunt<T>::AlberoBinPunt() {
 
 template <class T>
 AlberoBinPunt<T>::~AlberoBinPunt(){
-    cancsottoAlbero(radice);
+   // cancsottoAlbero(radice);
 }
 
 template <class T>
@@ -150,22 +150,26 @@ void AlberoBinPunt<T>::cancsottoAlbero(nodo n){
         //cout << "FALSE" << endl;
         if (n->get_padre() != nullptr){
         if(n->get_padre()->get_figlioSin() == n){
-            //cout << n->get_element() << " is figliosx of " << n->get_padre()->get_element() << endl;
+            cout << n->get_element() << " is figliosx of " << n->get_padre()->get_element() << endl;
             n->get_padre()->set_figlioSin(nullptr);
             }
         else if (n->get_padre()->get_figlioDes() == n){
-            //cout << n->get_element() << " is figliosx of " << n->get_padre()->get_element() << endl;
+            cout << n->get_element() << " is figliosx of " << n->get_padre()->get_element() << endl;
             n->get_padre()->set_figlioDes(nullptr);
             }
         }
-        //cout << "getting sons..." << endl;
+        cout << "getting sons..." << endl;
         if(n->get_figlioSin() != nullptr)
             cancsottoAlbero(n->get_figlioSin());
         if(n->get_figlioDes() != nullptr)
             cancsottoAlbero(n->get_figlioDes());
 
-        //cout << "deleting " << n->get_element() << "..." << endl;
+        cout << "deleting " << n->get_element() << "..." << endl;
+
+        if (n == radice)
+            radice = nullptr;
         delete n;
+        //n = nullptr;
         }
         //else throw EmptyTree();
 }

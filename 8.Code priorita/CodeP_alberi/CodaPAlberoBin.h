@@ -9,7 +9,7 @@ class CodaPAlberoBin : public CodaP<T>{
 
 public:
     typedef typename CodaP<T>::tipoElem tipoElem;
-
+    typedef typename AlberoBinPunt<T>::nodo nodo;
      /*****constructors*****/
     CodaPAlberoBin();
 
@@ -26,12 +26,16 @@ public:
     void cancellaMin ();
 
     void print();
-    /*void fixUp ();
-    void fixDown (int, int);*/
+
+
 
 private:
     AlberoBinPunt<T> alberoCoda;
-    typename AlberoBinPunt<T>::nodo ultimo;
+    nodo ultimo;
+
+    //void fixUp ();
+    void fixDown();
+    void switchElem(nodo, nodo);
 };
 
 template <class T>
@@ -119,22 +123,24 @@ typename CodaPAlberoBin<T>::tipoElem CodaPAlberoBin<T>::min() {
 template <class T>
 void CodaPAlberoBin<T>::cancellaMin() {
     if(!alberoCoda.alberoBinVuoto()){
+
+        tipoElem last_elem;
+
         if(ultimo == alberoCoda.binRadice()){ //l'albero ha solo la radice, cancello l'albero
+            cout << "do" << endl;
             ultimo = nullptr;
             alberoCoda.cancsottoAlbero(alberoCoda.binRadice());
-        }else if(ultimo == alberoCoda.binFiglioDes(alberoCoda.binPadre(ultimo))){
-            alberoCoda.scriviNodo(alberoCoda.leggiNodo(ultimo), alberoCoda.binRadice());
-            typename AlberoBinPunt<T>::nodo temp = alberoCoda.binFiglioSin(alberoCoda.binPadre(ultimo));
-            alberoCoda.cancsottoAlbero(ultimo);
-            ultimo = temp;
-            delete temp;
-        }else{
-            typename AlberoBinPunt<T>::nodo temp = ultimo;
+        }else if(ultimo == alberoCoda.binFiglioSin(alberoCoda.binPadre(ultimo))){
+            cout << "do2" << endl;
+            last_elem = alberoCoda.leggiNodo(ultimo);
+            //alberoCoda.scriviNodo(alberoCoda.leggiNodo(ultimo), alberoCoda.binRadice());
+            nodo temp = ultimo;
             while(temp == alberoCoda.binFiglioSin(alberoCoda.binPadre(temp)) && temp != alberoCoda.binRadice()){
-                // cout << "up one" << endl;
+                cout << "up one" << endl;
                 temp = alberoCoda.binPadre(temp);
             }
             if(temp == alberoCoda.binRadice()){ //ha raggiunto radice, inserisce un nuovo sin in fondo
+                        cout << "do21" << endl;
                 while(!alberoCoda.desVuoto(temp))
                     temp = alberoCoda.binFiglioDes(temp);
                 //cout << "inserting " << e << " in new level left" << endl;
@@ -142,6 +148,7 @@ void CodaPAlberoBin<T>::cancellaMin() {
                 ultimo = temp;
                 delete temp;
             }else{
+                        cout << "do22" << endl;
                 temp = alberoCoda.binFiglioSin(alberoCoda.binPadre(temp));
                 while(!alberoCoda.desVuoto(temp))
                     temp = alberoCoda.binFiglioDes(temp);
@@ -151,24 +158,58 @@ void CodaPAlberoBin<T>::cancellaMin() {
                 delete temp;
             }
         }
+        else if(ultimo == alberoCoda.binFiglioDes(alberoCoda.binPadre(ultimo))){
+            alberoCoda.scriviNodo(alberoCoda.leggiNodo(ultimo), alberoCoda.binRadice());
+            typename AlberoBinPunt<T>::nodo temp = alberoCoda.binFiglioSin(alberoCoda.binPadre(ultimo));
+            alberoCoda.cancsottoAlbero(ultimo);
+            ultimo = temp;
+            delete temp;
+        }
+        cout  << "update" << endl;
         // FASE 2 DI AGGIUSTAMENTO
-        typename AlberoBinPunt<T>::nodo temp = alberoCoda.binRadice();
+        alberoCoda.scriviNodo(last_elem,alberoCoda.binRadice());
         bool exit_loop = false;
+        nodo temp;
+        if(alberoCoda.alberoBinVuoto())
+            exit_loop = true;
+        else
+            temp = alberoCoda.binRadice();
         while(!exit_loop){
             if(alberoCoda.sinVuoto(temp))
                 exit_loop = true;
-            else if(alberoCoda.desVuoto(temp))
-
-            //////////FIX THIS//////////////
-
-
-            //cout << "swapping " << alberoCoda.leggiNodo(temp) << " with " << alberoCoda.leggiNodo(alberoCoda.binPadre(temp)) << endl;
-            tipoElem temp_e = alberoCoda.leggiNodo(alberoCoda.binPadre(temp));
-            alberoCoda.scriviNodo(alberoCoda.leggiNodo(temp), alberoCoda.binPadre(temp));
-            alberoCoda.scriviNodo(temp_e, temp);
-            temp = alberoCoda.binPadre(temp);
+            else if(alberoCoda.desVuoto(temp)){
+                if(alberoCoda.leggiNodo(temp) > alberoCoda.leggiNodo(alberoCoda.binFiglioSin(temp))){
+                    switchElem(temp, alberoCoda.binFiglioSin(temp));
+                    temp = alberoCoda.binFiglioSin(temp);
+                }else exit_loop = true;
+            }else{
+                if (alberoCoda.leggiNodo(alberoCoda.binFiglioSin(temp)) < alberoCoda.leggiNodo(alberoCoda.binFiglioDes(temp))){
+                    //scambia con figliosin
+                    if(alberoCoda.leggiNodo(temp) > alberoCoda.leggiNodo(alberoCoda.binFiglioSin(temp))){
+                        switchElem(temp, alberoCoda.binFiglioSin(temp));
+                        temp = alberoCoda.binFiglioSin(temp);
+                    }else exit_loop = true;
+                }else{
+                    //scambia con figliodes
+                    if(alberoCoda.leggiNodo(temp) > alberoCoda.leggiNodo(alberoCoda.binFiglioDes(temp))){
+                        switchElem(temp, alberoCoda.binFiglioDes(temp));
+                        temp = alberoCoda.binFiglioDes(temp);
+                    }else exit_loop = true;
+                }
+            }
         }
     }
+}
+
+template <class T>
+void CodaPAlberoBin<T>::switchElem(nodo n, nodo m) {
+    tipoElem temp_e = alberoCoda.leggiNodo(n);
+    alberoCoda.scriviNodo(alberoCoda.leggiNodo(m), n);
+    alberoCoda.scriviNodo(temp_e, m);
+}
+
+template <class T>
+void CodaPAlberoBin<T>::fixDown() {
 }
 
 template <class T>
