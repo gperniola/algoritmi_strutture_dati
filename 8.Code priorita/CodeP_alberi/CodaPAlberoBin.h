@@ -63,57 +63,56 @@ typename CodaPAlberoBin<T>::tipoElem CodaPAlberoBin<T>::min() {
 
 template <class T>
 void CodaPAlberoBin<T>::inserisci(tipoElem e) {
-    //FASE 1 DI INSERIMENTO NODO
-    if(alberoCoda.alberoBinVuoto()){    //caso1: l'albero è vuoto, inserisco e come radice
-        //cout << "inserting " << e << " in root" << endl;
+    /*** caso1: l'albero è vuoto, inserisco e come radice ***/
+    if(alberoCoda.alberoBinVuoto()){
         alberoCoda.insBinRadice();
         ultimo = alberoCoda.binRadice();
         alberoCoda.scriviNodo(e,ultimo);
     }
-    else if(ultimo == alberoCoda.binRadice()){ //caso2: ultimo è la radice, inserisco in sin
-       // cout << "inserting " << e << " in root-left" << endl;
+    else{
         AlberoBinPunt<T> *newAlbero = new AlberoBinPunt<T>();
         newAlbero->insBinRadice();
         alberoCoda.scriviNodo(e,newAlbero->binRadice());
-        alberoCoda.insFiglioSin(alberoCoda.binRadice(), *newAlbero);
-        ultimo = alberoCoda.binFiglioSin(alberoCoda.binRadice());
-    }else if(ultimo == alberoCoda.binFiglioSin(alberoCoda.binPadre(ultimo))){ //caso3: è un figlio sin di un nodo, inserisce in fratello des
-        //cout << "inserting " << e << " in right brother" << endl;
-        AlberoBinPunt<T> *newAlbero = new AlberoBinPunt<T>();
-        newAlbero->insBinRadice();
-        alberoCoda.scriviNodo(e,newAlbero->binRadice());
-        alberoCoda.insFiglioDes(alberoCoda.binPadre(ultimo), *newAlbero);
-        ultimo = alberoCoda.binFiglioDes(alberoCoda.binPadre(ultimo));
-    }else{ //caso4: è un nodo destro, deve salire fino a radire e creare un nuovo livello oppure fino a che non è figliosin di qualche nodo
-        typename AlberoBinPunt<T>::nodo temp = ultimo;
-        while(temp == alberoCoda.binFiglioDes(alberoCoda.binPadre(temp)) && temp != alberoCoda.binRadice()){
-           // cout << "up one" << endl;
-            temp = alberoCoda.binPadre(temp);
-        }
-        if(temp == alberoCoda.binRadice()){ //ha raggiunto radice, inserisce un nuovo sin in fondo
-            while(!alberoCoda.sinVuoto(temp))
-                temp = alberoCoda.binFiglioSin(temp);
-            //cout << "inserting " << e << " in new level left" << endl;
-            AlberoBinPunt<T> *newAlbero = new AlberoBinPunt<T>();
-            newAlbero->insBinRadice();
-            alberoCoda.scriviNodo(e,newAlbero->binRadice());
-            alberoCoda.insFiglioSin(temp, *newAlbero);
-            ultimo = alberoCoda.binFiglioSin(temp);
-        }else{
-            temp = alberoCoda.binFiglioDes(alberoCoda.binPadre(temp));
-            while(!alberoCoda.sinVuoto(temp))
-                temp = alberoCoda.binFiglioSin(temp);
-            //cout << "inserting " << e << " in left node of a right brother" << endl;
-            AlberoBinPunt<T> *newAlbero = new AlberoBinPunt<T>();
-            newAlbero->insBinRadice();
-            alberoCoda.scriviNodo(e,newAlbero->binRadice());
-            alberoCoda.insFiglioSin(temp, *newAlbero);
-            ultimo = alberoCoda.binFiglioSin(temp);
-        }
-    }
 
-    /*** FASE 2 DI AGGIUSTAMENTO DELLA PRIORITA' ***/
-    fixUp(ultimo);
+        /*** caso2: ultimo è la radice, inserisco in sin ***/
+        if(ultimo == alberoCoda.binRadice()){
+            alberoCoda.insFiglioSin(alberoCoda.binRadice(), *newAlbero);
+            ultimo = alberoCoda.binFiglioSin(alberoCoda.binRadice());
+        }
+        else{
+            /*** caso3: è un figlio sin di un nodo, inserisce in fratello des ***/
+            if(ultimo == alberoCoda.binFiglioSin(alberoCoda.binPadre(ultimo))){
+                alberoCoda.insFiglioDes(alberoCoda.binPadre(ultimo), *newAlbero);
+                ultimo = alberoCoda.binFiglioDes(alberoCoda.binPadre(ultimo));
+            }
+            else{
+                /*** caso4: è un nodo destro, deve salire fino a radire e creare un nuovo livello oppure fino a che non è figliosin di qualche nodo ***/
+                nodo temp = ultimo;
+                while(temp == alberoCoda.binFiglioDes(alberoCoda.binPadre(temp)) && temp != alberoCoda.binRadice())
+                    temp = alberoCoda.binPadre(temp);
+
+                /*** ha raggiunto radice, inserisce un nuovo sin in fondo ***/
+                if(temp == alberoCoda.binRadice()){
+                    while(!alberoCoda.sinVuoto(temp))
+                        temp = alberoCoda.binFiglioSin(temp);
+
+                    alberoCoda.insFiglioSin(temp, *newAlbero);
+                    ultimo = alberoCoda.binFiglioSin(temp);
+                }
+                else{
+                    temp = alberoCoda.binFiglioDes(alberoCoda.binPadre(temp));
+                    while(!alberoCoda.sinVuoto(temp))
+                        temp = alberoCoda.binFiglioSin(temp);
+
+                    alberoCoda.insFiglioSin(temp, *newAlbero);
+                    ultimo = alberoCoda.binFiglioSin(temp);
+                }
+            }
+        }
+
+        /*** FASE 2 DI AGGIUSTAMENTO DELLA PRIORITA' ***/
+        fixUp(ultimo);
+    }
 }
 
 
