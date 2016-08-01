@@ -11,9 +11,6 @@ public:
   virtual void inserisci (tipoElem) = 0;
   virtual tipoElem min () = 0;
   virtual void cancellaMin () = 0;
-
-  /*virtual void fixUp () = 0;
-  virtual void fixDown (int, int) = 0;*/
 };
 
 
