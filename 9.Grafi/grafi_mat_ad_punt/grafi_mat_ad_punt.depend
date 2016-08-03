@@ -1,0 +1,21 @@
+# depslib dependency file v1.0
+1470220957 source:/home/giuseppe/Documents/GitHub/algoritmi_strutture_dati/9.Grafi/grafi_mat_ad_punt/main.cpp
+	<iostream>
+	"grafoPunt.h"
+
+1470220989 /home/giuseppe/Documents/GitHub/algoritmi_strutture_dati/9.Grafi/grafi_mat_ad_punt/grafoPunt.h
+	"grafo.h"
+
+1470220967 /home/giuseppe/Documents/GitHub/algoritmi_strutture_dati/9.Grafi/grafi_mat_ad_punt/grafo.h
+	"list_pointer.h"
+
+1467703731 /home/giuseppe/Documents/GitHub/algoritmi_strutture_dati/9.Grafi/grafi_mat_ad_punt/list_pointer.h
+	"linear_list.h"
+	"cell.h"
+
+1467713098 /home/giuseppe/Documents/GitHub/algoritmi_strutture_dati/9.Grafi/grafi_mat_ad_punt/linear_list.h
+	<typeinfo>
+	<iostream>
+
+1448551739 /home/giuseppe/Documents/GitHub/algoritmi_strutture_dati/9.Grafi/grafi_mat_ad_punt/cell.h
+
