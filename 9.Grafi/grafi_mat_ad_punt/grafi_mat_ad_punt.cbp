@@ -29,6 +29,7 @@
 		<Unit filename="linear_list.h" />
 		<Unit filename="list_pointer.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="nodoGrafo.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />

@@ -3,15 +3,7 @@
 
 
 #include "grafo.h"
-//#include "nodoGrafo.h"
-
-
-template < class T, class P> class NodoGrafo{
-    public:
-    typedef T tipoElem;
-    typedef P peso;
-
-};
+#include "nodoGrafo.h"
 
 
 template < class T, class P >
@@ -22,6 +14,26 @@ public:
 	typedef typename Grafo<T, NodoGrafo<T,P>, P>::tipoElem tipoElem;
 	typedef typename Grafo<T, NodoGrafo<T,P>, P>::peso peso;
 	typedef typename Grafo<T, NodoGrafo<T,P>, P>::List List;
+
+	/*** constructors ***/
+    GrafoPunt();
+
+    /*****copy constructor*****/
+    GrafoPunt(const GrafoPunt<T,P> &);
+
+    /*****destructor*****/
+    ~GrafoPunt();
+
+    /*****operators*****/
+
+
+
+
+
+
+
+
+
 
 private:
     List nodi;
