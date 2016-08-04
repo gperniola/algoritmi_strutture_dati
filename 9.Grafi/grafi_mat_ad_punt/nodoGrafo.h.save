@@ -50,7 +50,7 @@ void NodoGrafo<T,P>::setEtichetta(tipoElem e){
 }
 
 template <class T, class P>
-typename NodoGrafo<T,P>::tipoElem NodoGrafo<T,P>::getEtichetta() const{
+typename NodoGrafo<T,P>::tipoElem NodoGrafo<T,P>::getEtichetta(){
     return etichetta;
 }
 

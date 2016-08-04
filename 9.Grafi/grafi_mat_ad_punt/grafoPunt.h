@@ -19,30 +19,82 @@ public:
     GrafoPunt();
 
     /*****copy constructor*****/
-    GrafoPunt(const GrafoPunt<T,P> &);
+    //GrafoPunt(const GrafoPunt<T,P> &);
 
     /*****destructor*****/
     ~GrafoPunt();
 
     /*****operators*****/
+    void crea();
+    bool vuoto();
+    void insNodo(nodo);
+    void cancNodo(nodo);
+    bool esisteNodo(nodo);
 
-
-
-
-
-
-
-
-
+    tipoElem leggiNodo(nodo);
+    void scriviNodo(nodo, tipoElem);
 
 private:
-    List nodi;
+    List* nodi;
 
 };
 
+template <class T, class P>
+GrafoPunt<T,P>::GrafoPunt(){
+    this->crea();
+}
+
+template <class T, class P>
+GrafoPunt<T,P>::~GrafoPunt(){
+    nodi->clear();
+}
+
+template <class T, class P>
+void GrafoPunt<T,P>::crea(){
+    nodi = new List();
+}
+
+template <class T, class P>
+bool GrafoPunt<T,P>::vuoto(){
+    return nodi->empty();
+}
+
+template <class T, class P>
+void GrafoPunt<T,P>::insNodo(nodo n){
+    if(!esisteNodo(n))
+        nodi->insert_ordered(n);
+}
+
+template <class T, class P>
+void GrafoPunt<T,P>::cancNodo(nodo n){
+    if(esisteNodo(n))
+        nodi->erase(nodi->linear_ord_search(n));
+}
+
+template <class T, class P>
+bool GrafoPunt<T,P>::esisteNodo(nodo n){
+    if(nodi->linear_ord_search(n) == NULL)
+        return false;
+    else
+        return true;
+}
 
 
 
+
+
+
+template <class T, class P>
+typename GrafoPunt<T,P>::tipoElem GrafoPunt<T,P>::leggiNodo(nodo n){
+    if(esisteNodo(n))
+        return n.getEtichetta();
+}
+
+template <class T, class P>
+void GrafoPunt<T,P>::scriviNodo(nodo n, tipoElem e){
+    if(esisteNodo(n))
+        n.setEtichetta(e);
+}
 
 
 
