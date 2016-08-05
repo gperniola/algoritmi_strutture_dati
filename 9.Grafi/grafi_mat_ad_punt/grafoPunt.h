@@ -27,12 +27,14 @@ public:
     /*****operators*****/
     void crea();
     bool vuoto();
-    void insNodo(nodo);
-    void cancNodo(nodo);
-    bool esisteNodo(nodo);
+    void insNodo(nodo &);
+    void cancNodo(nodo &);
+    bool esisteNodo(nodo &);
 
-    tipoElem leggiNodo(nodo);
-    void scriviNodo(nodo, tipoElem);
+    tipoElem leggiNodo(nodo &);
+    void scriviNodo(nodo &, tipoElem);
+
+    void print();
 
 private:
     List* nodi;
@@ -46,7 +48,8 @@ GrafoPunt<T,P>::GrafoPunt(){
 
 template <class T, class P>
 GrafoPunt<T,P>::~GrafoPunt(){
-    nodi->clear();
+    cout << "calling grafo dest" << endl;
+    //nodi->clear();
 }
 
 template <class T, class P>
@@ -60,20 +63,20 @@ bool GrafoPunt<T,P>::vuoto(){
 }
 
 template <class T, class P>
-void GrafoPunt<T,P>::insNodo(nodo n){
-    if(!esisteNodo(n))
+void GrafoPunt<T,P>::insNodo(nodo &n){
+    //if(!esisteNodo(n))
         nodi->insert_ordered(n);
 }
 
 template <class T, class P>
-void GrafoPunt<T,P>::cancNodo(nodo n){
+void GrafoPunt<T,P>::cancNodo(nodo &n){
     if(esisteNodo(n))
         nodi->erase(nodi->linear_ord_search(n));
 }
 
 template <class T, class P>
-bool GrafoPunt<T,P>::esisteNodo(nodo n){
-    if(nodi->linear_ord_search(n) == NULL)
+bool GrafoPunt<T,P>::esisteNodo(nodo &n){
+    if(nodi->linear_search(n) == NULL)
         return false;
     else
         return true;
@@ -85,17 +88,19 @@ bool GrafoPunt<T,P>::esisteNodo(nodo n){
 
 
 template <class T, class P>
-typename GrafoPunt<T,P>::tipoElem GrafoPunt<T,P>::leggiNodo(nodo n){
+typename GrafoPunt<T,P>::tipoElem GrafoPunt<T,P>::leggiNodo(nodo &n){
     if(esisteNodo(n))
         return n.getEtichetta();
 }
 
 template <class T, class P>
-void GrafoPunt<T,P>::scriviNodo(nodo n, tipoElem e){
-    if(esisteNodo(n))
+void GrafoPunt<T,P>::scriviNodo(nodo &n, tipoElem e){
         n.setEtichetta(e);
 }
 
-
+template <class T, class P>
+void GrafoPunt<T,P>::print(){
+       cout << "Nodi: " << *nodi;
+}
 
 #endif

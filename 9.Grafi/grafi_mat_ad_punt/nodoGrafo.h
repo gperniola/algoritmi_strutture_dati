@@ -26,6 +26,9 @@ template < class T, class P> class NodoGrafo{
 
 
 
+    NodoGrafo();
+    ~NodoGrafo();
+
     tipoElem getEtichetta() const;
     void setEtichetta(tipoElem);
 
@@ -40,9 +43,24 @@ template < class T, class P> class NodoGrafo{
     private:
     tipoElem etichetta;
     int numArchi;
-    List_pointer<NodoGrafo<T,P>*> archi;
+    //List_pointer<NodoGrafo<T,P>*> archi;
 
 };
+
+
+template <class T, class P>
+NodoGrafo<T,P>::NodoGrafo(){
+}
+
+template <class T, class P>
+NodoGrafo<T,P>::~NodoGrafo(){
+    cout << "calling nodo dest" << endl;
+}
+
+
+
+
+
 
 template <class T, class P>
 void NodoGrafo<T,P>::setEtichetta(tipoElem e){
@@ -61,6 +79,7 @@ NodoGrafo<T,P>& NodoGrafo<T,P>::operator = (const NodoGrafo<T,P> &n){}
 
 template <class T, class P>
 bool NodoGrafo<T,P>::operator == (const NodoGrafo<T,P> &n) const{
+    cout << this->getEtichetta() << " == " << n.getEtichetta() << endl;
     if(this->getEtichetta() == n.getEtichetta())
         return true;
     else
@@ -68,14 +87,35 @@ bool NodoGrafo<T,P>::operator == (const NodoGrafo<T,P> &n) const{
 }
 
 template <class T, class P>
-bool NodoGrafo<T,P>::operator < (const NodoGrafo<T,P> &n) const{}
+bool NodoGrafo<T,P>::operator < (const NodoGrafo<T,P> &n) const{
+    if(this->getEtichetta() < n.getEtichetta())
+        return true;
+    else
+        return false;
+}
 
 template <class T, class P>
-bool NodoGrafo<T,P>::operator <= (const NodoGrafo<T,P> &n) const{}
+bool NodoGrafo<T,P>::operator <= (const NodoGrafo<T,P> &n) const{
+    if(this->getEtichetta() <= n.getEtichetta())
+        return true;
+    else
+        return false;
+}
 
 template <class T, class P>
-bool NodoGrafo<T,P>::operator > (const NodoGrafo<T,P> &n) const{}
+bool NodoGrafo<T,P>::operator > (const NodoGrafo<T,P> &n) const{
+    cout << this->getEtichetta() << " > " << n.getEtichetta() << endl;
+    if(getEtichetta() > n.getEtichetta())
+            return true;
+        else
+            return false;
+}
 
 
+template< class T, class P >
+ostream& operator<<(ostream& os, const NodoGrafo<T,P> &n){
+    os << "eti: " << n.getEtichetta();
+    return os;
+}
 
 #endif

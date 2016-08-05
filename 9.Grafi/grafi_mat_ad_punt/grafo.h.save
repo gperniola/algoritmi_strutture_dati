@@ -10,22 +10,22 @@ public:
 	typedef T tipoElem;
 	typedef N nodo;
     typedef P peso;
-    typedef List_pointer<nodo> List;
+    typedef List_pointer<nodo*> List;
 
     /*** Operatori ***/
     virtual void crea() = 0;
     virtual bool vuoto() = 0;
-    virtual void insNodo(nodo) = 0;
+    virtual void insNodo(nodo &) = 0;
     //virtual void insArco(nodo, nodo) = 0;
-    virtual void cancNodo(nodo) = 0;
+    virtual void cancNodo(nodo &) = 0;
     //virtual void cancArco(nodo, nodo) = 0;
     //virtual List adiacenti(nodo) = 0;
-    virtual bool esisteNodo(nodo) = 0;
-    /*virtual bool esisteArco(nodo, nodo) = 0;
+    virtual bool esisteNodo(nodo &) = 0;
+    //virtual bool esisteArco(nodo, nodo) = 0;
 
-    virtual tipoElem leggiNodo(nodo) = 0;
-    virtual void scriviNodo(nodo) = 0;
-    virtual peso leggiPeso(nodo, nodo) = 0;
+    virtual tipoElem leggiNodo(nodo &) = 0;
+    virtual void scriviNodo(nodo &, tipoElem) = 0;
+    /*virtual peso leggiPeso(nodo, nodo) = 0;
     virtual void scriviPeso(nodo, nodo) = 0;
 
     virtual int numNodi() = 0;

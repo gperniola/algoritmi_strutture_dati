@@ -42,7 +42,7 @@ public:
 
     virtual void invert();
     virtual bool is_palindrome();
-    virtual void insert_ordered(value_type);
+    virtual void insert_ordered(const value_type);
     virtual position linear_search(const value_type &) const;
     virtual position linear_ord_search (value_type);
     virtual void merge_ord(const Linear_list &, const Linear_list &); //merges the two lists inside the obj list
@@ -166,17 +166,17 @@ bool Linear_list<T,P>::is_palindrome(){
 }
 
 template <class T, class P>
-void Linear_list<T,P>::insert_ordered(value_type val){
+void Linear_list<T,P>::insert_ordered(const value_type &val){
     Linear_list<T,P>::position pos = begin();
     bool inserted = false;
 
     while(!end(pos) && inserted == false){
         if (val > read(pos)){
-            cout << val << " major " << read(pos) <<", skipping" << endl;
+            //cout << val << " major " << read(pos) <<", skipping" << endl;
             pos = next(pos);
             }
         else{
-            cout << val << " mineq " << read(pos) <<", inserting" << endl;
+            //cout << val << " mineq " << read(pos) <<", inserting" << endl;
             insert(val, pos);
             inserted = true;
         }
