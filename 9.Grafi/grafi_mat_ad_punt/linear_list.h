@@ -172,11 +172,9 @@ void Linear_list<T,P>::insert_ordered(value_type val){
 
     while(!end(pos) && inserted == false){
         if (val > read(pos)){
-            cout << val << " major " << read(pos) <<", skipping" << endl;
             pos = next(pos);
             }
         else{
-            cout << val << " mineq " << read(pos) <<", inserting" << endl;
             insert(val, pos);
             inserted = true;
         }
@@ -191,9 +189,7 @@ typename Linear_list<T,P>::position Linear_list<T,P>::linear_ord_search (value_t
     Linear_list<T,P>::position pos = begin();
     bool found = false;
     bool not_here = false;
-    cout << "search " <<  val << endl;
     while(!end(pos) && found == false && not_here == false){
-        cout << "reading " << read(pos);
         if (val == read(pos)){
             //cout << " ...found!" << endl;
             found = true;

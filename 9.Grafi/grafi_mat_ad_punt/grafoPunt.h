@@ -28,6 +28,7 @@ public:
     void crea();
     bool vuoto();
     void insNodo(nodo &);
+    void insArco(nodo &, nodo &);
     void cancNodo(nodo &);
     bool esisteNodo(nodo &);
 
@@ -48,8 +49,7 @@ GrafoPunt<T,P>::GrafoPunt(){
 
 template <class T, class P>
 GrafoPunt<T,P>::~GrafoPunt(){
-    cout << "calling grafo dest" << endl;
-    //nodi->clear();
+    nodi->clear();
 }
 
 template <class T, class P>
@@ -64,9 +64,21 @@ bool GrafoPunt<T,P>::vuoto(){
 
 template <class T, class P>
 void GrafoPunt<T,P>::insNodo(nodo &n){
-    //if(!esisteNodo(n))
+    if(!esisteNodo(n))
         nodi->insert_ordered(n);
 }
+
+template <class T, class P>
+void GrafoPunt<T,P>::insArco(nodo &n, nodo &m){
+    if(esisteNodo(n) && esisteNodo(m)){
+
+
+    }
+        nodi->insert_ordered(n);
+}
+
+
+
 
 template <class T, class P>
 void GrafoPunt<T,P>::cancNodo(nodo &n){
@@ -76,7 +88,7 @@ void GrafoPunt<T,P>::cancNodo(nodo &n){
 
 template <class T, class P>
 bool GrafoPunt<T,P>::esisteNodo(nodo &n){
-    if(nodi->linear_search(n) == NULL)
+    if(nodi->linear_search(n) == false)
         return false;
     else
         return true;

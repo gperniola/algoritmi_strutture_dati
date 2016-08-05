@@ -21,28 +21,33 @@
 
 1448551739 /home/giuseppe/Documents/GitHub/algoritmi_strutture_dati/9.Grafi/grafi_mat_ad_punt/cell.h
 
-1470235101 source:/home/giuseppe/Documents/github/algoritmi_strutture_dati/9.Grafi/grafi_mat_ad_punt/main.cpp
+1470399654 source:/home/giuseppe/Documents/github/algoritmi_strutture_dati/9.Grafi/grafi_mat_ad_punt/main.cpp
 	<iostream>
 	"grafoPunt.h"
+	"nodoGrafo.h"
 
-1470243043 /home/giuseppe/Documents/github/algoritmi_strutture_dati/9.Grafi/grafi_mat_ad_punt/grafoPunt.h
+1470404135 /home/giuseppe/Documents/github/algoritmi_strutture_dati/9.Grafi/grafi_mat_ad_punt/grafoPunt.h
 	"grafo.h"
 	"nodoGrafo.h"
 
-1470234494 /home/giuseppe/Documents/github/algoritmi_strutture_dati/9.Grafi/grafi_mat_ad_punt/grafo.h
+1470401839 /home/giuseppe/Documents/github/algoritmi_strutture_dati/9.Grafi/grafi_mat_ad_punt/grafo.h
 	"list_pointer.h"
 
 1470234494 /home/giuseppe/Documents/github/algoritmi_strutture_dati/9.Grafi/grafi_mat_ad_punt/list_pointer.h
 	"linear_list.h"
 	"cell.h"
 
-1470234494 /home/giuseppe/Documents/github/algoritmi_strutture_dati/9.Grafi/grafi_mat_ad_punt/linear_list.h
+1470399723 /home/giuseppe/Documents/github/algoritmi_strutture_dati/9.Grafi/grafi_mat_ad_punt/linear_list.h
 	<typeinfo>
 	<iostream>
 
 1470234494 /home/giuseppe/Documents/github/algoritmi_strutture_dati/9.Grafi/grafi_mat_ad_punt/cell.h
 
-1470243022 /home/giuseppe/Documents/github/algoritmi_strutture_dati/9.Grafi/grafi_mat_ad_punt/nodoGrafo.h
+1470404459 /home/giuseppe/Documents/github/algoritmi_strutture_dati/9.Grafi/grafi_mat_ad_punt/nodoGrafo.h
 
 1470393085 /home/giuseppe/Documents/GitHub/algoritmi_strutture_dati/9.Grafi/grafi_mat_ad_punt/nodoGrafo.h
+
+1320322776 /home/giuseppe/Documents/github/algoritmi_strutture_dati/9.Grafi/grafi_mat_ad_punt/list_bptr.h
+	"cell.h"
+	"linear_list.h"
 
