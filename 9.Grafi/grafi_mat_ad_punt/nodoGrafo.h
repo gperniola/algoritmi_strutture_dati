@@ -42,7 +42,7 @@ Arco<P,N>::~Arco(){
 
 template <class P, class N>
 void Arco<P,N>::setNodoPunt(nodoPunt &n){
-    nodoPuntato = n;
+    nodoPuntato = &n;
 }
 
 template <class P, class N>
@@ -100,6 +100,7 @@ template < class T, class P> class NodoGrafo{
     void setEtichetta(tipoElem);
     void addArco(NodoGrafo &);
     Lista* getArchi();
+    bool cercaArco(NodoGrafo &);
 
 
 
@@ -141,13 +142,28 @@ typename NodoGrafo<T,P>::tipoElem NodoGrafo<T,P>::getEtichetta() const{
 
 template <class T, class P>
 void NodoGrafo<T,P>::addArco(NodoGrafo &n){
-    typename Lista::position p;
-    Arco<P,NodoGrafo> *new_arco = new Arco<P,NodoGrafo>();
-    new_arco->setNodoPunt(n);
+    Arco<P,NodoGrafo> new_arco;
+    new_arco.setNodoPunt(n);
     //new_arco->setPeso(1);
     archi->insert_ordered(new_arco);
 }
 
+
+
+
+
+
+template <class T, class P>
+bool NodoGrafo<T,P>::cercaArco(NodoGrafo &m){
+    Arco<P,NodoGrafo> a;
+    a.setNodoPunt(m);
+    /*if(archi->linear_ord_search(a) == NULL)
+        return false;
+    else
+        return true;*/
+        cout << "doing this" << endl;
+        return false;
+}
 
 
 template <class T, class P>
@@ -155,6 +171,7 @@ NodoGrafo<T,P>& NodoGrafo<T,P>::operator = (const NodoGrafo<T,P> &n){
     etichetta = n.getEtichetta();
 
 }
+
 
 template <class T, class P>
 bool NodoGrafo<T,P>::operator == (const NodoGrafo<T,P> &n) const{

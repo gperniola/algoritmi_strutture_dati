@@ -12,6 +12,7 @@ int main()
     NodoGrafo<int,int> n,m,z;
 
     n.setEtichetta(2);
+        cout << "esiste n: " << g.esisteNodo(n) << endl;
     cout << n.getEtichetta() << endl;
     g.insNodo(n);
 
@@ -22,8 +23,9 @@ int main()
     z.setEtichetta(6);
     cout << z.getEtichetta() << endl;
     g.insNodo(z);
+    cout << "esiste arco n->m: " << g.esisteArco(n,m) << endl;
     g.insArco(n,m);
-
+    cout << "esiste arco n->m: " << g.esisteArco(n,m) << endl;
     g.print();
     //cout << m << endl;
     //cout << (m == n) << endl;
@@ -33,7 +35,7 @@ int main()
 
     cout << g.vuoto()<< endl;
 
-
+    cout << "esiste n: " << g.esisteNodo(n) << endl;
 
     //g.scriviNodo(n,3);
     cout << g.leggiNodo(n) << endl;
