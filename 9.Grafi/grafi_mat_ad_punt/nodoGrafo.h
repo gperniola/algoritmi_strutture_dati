@@ -14,7 +14,16 @@ public:
     ~Arco();
 
     void setNodoPunt(nodoPunt &);
-    nodoPunt getNodoPunt();
+    void setPeso(peso);
+
+    nodoPunt getNodoPunt() const;
+    peso getPeso() const;
+
+    Arco<P,N>& operator = (const Arco<P,N> &);
+    bool operator == (const Arco<P,N> &) const;
+    bool operator < (const Arco<P,N> &) const;
+    bool operator <= (const Arco<P,N> &) const;
+    bool operator > (const Arco<P,N> &) const;
 
 private:
     peso pe;
@@ -37,23 +46,51 @@ void Arco<P,N>::setNodoPunt(nodoPunt &n){
 }
 
 template <class P, class N>
-typename Arco<P,N>::nodoPunt Arco<P,N>::getNodoPunt(){
-    return &nodoPuntato;
+void Arco<P,N>::setPeso(peso p){
+    pe = p;
 }
 
+template <class P, class N>
+typename Arco<P,N>::nodoPunt Arco<P,N>::getNodoPunt() const{
+    return *nodoPuntato;
+}
 
+template <class P, class N>
+typename Arco<P,N>::peso Arco<P,N>::getPeso() const{
+    return pe;
+}
 
+template <class P, class N>
+Arco<P,N>& Arco<P,N>::operator = (const Arco<P,N> &a){
+//  todo
 
+}
 
+template <class P, class N>
+bool Arco<P,N>::operator == (const Arco<P,N> &a) const{
+    return this->getNodoPunt() == a.getNodoPunt();
+}
 
+template <class P, class N>
+bool Arco<P,N>::operator < (const Arco<P,N> &a) const{
+    return this->getPeso() < a.getPeso();
+}
 
+template <class P, class N>
+bool Arco<P,N>::operator <= (const Arco<P,N> &a) const{
+    return this->getPeso() <= a.getPeso();
+}
 
+template <class P, class N>
+bool Arco<P,N>::operator > (const Arco<P,N> &a) const{
+    return this->getPeso() > a.getPeso();
+}
 
 template < class T, class P> class NodoGrafo{
     public:
     typedef T tipoElem;
     typedef P peso;
-
+    typedef List_pointer<Arco<P,NodoGrafo>> Lista;
 
 
     NodoGrafo();
@@ -62,6 +99,7 @@ template < class T, class P> class NodoGrafo{
     tipoElem getEtichetta() const;
     void setEtichetta(tipoElem);
     void addArco(NodoGrafo &);
+    Lista* getArchi();
 
 
 
@@ -74,7 +112,7 @@ template < class T, class P> class NodoGrafo{
     private:
     tipoElem etichetta;
     int numArchi;
-    List_pointer<Arco<P,NodoGrafo<T,P>>>* archi;
+    Lista* archi;
 
 };
 
@@ -103,10 +141,11 @@ typename NodoGrafo<T,P>::tipoElem NodoGrafo<T,P>::getEtichetta() const{
 
 template <class T, class P>
 void NodoGrafo<T,P>::addArco(NodoGrafo &n){
-   //// typename List_pointer<Arco<P,NodoGrafo<T,P>>>*::position p;
-   // Arco *new_arco = new Arco();
- //   new_arco->setNodoPunt(n);
-  //  archi->insert(new_arco, p = archi->begin());
+    typename Lista::position p;
+    Arco<P,NodoGrafo> *new_arco = new Arco<P,NodoGrafo>();
+    new_arco->setNodoPunt(n);
+    //new_arco->setPeso(1);
+    archi->insert_ordered(new_arco);
 }
 
 

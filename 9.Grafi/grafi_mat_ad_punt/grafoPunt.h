@@ -31,6 +31,7 @@ public:
     void insArco(nodo &, nodo &);
     void cancNodo(nodo &);
     bool esisteNodo(nodo &);
+    bool esisteArco(nodo &, nodo &);
 
     tipoElem leggiNodo(nodo &);
     void scriviNodo(nodo &, tipoElem);
@@ -71,10 +72,8 @@ void GrafoPunt<T,P>::insNodo(nodo &n){
 template <class T, class P>
 void GrafoPunt<T,P>::insArco(nodo &n, nodo &m){
     if(esisteNodo(n) && esisteNodo(m)){
-
-
+        cout << "boh";
     }
-        nodi->insert_ordered(n);
 }
 
 
@@ -94,6 +93,14 @@ bool GrafoPunt<T,P>::esisteNodo(nodo &n){
         return true;
 }
 
+
+template <class T, class P>
+bool GrafoPunt<T,P>::esisteArco(nodo &n, nodo &m){
+    if(nodi->linear_search(n) == false)
+        return false;
+    else
+        return true;
+}
 
 
 

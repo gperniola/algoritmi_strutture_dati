@@ -22,6 +22,7 @@ int main()
     z.setEtichetta(6);
     cout << z.getEtichetta() << endl;
     g.insNodo(z);
+    g.insArco(n,m);
 
     g.print();
     //cout << m << endl;

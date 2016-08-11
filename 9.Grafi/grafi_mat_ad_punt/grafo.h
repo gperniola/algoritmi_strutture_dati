@@ -16,12 +16,12 @@ public:
     virtual void crea() = 0;
     virtual bool vuoto() = 0;
     virtual void insNodo(nodo &) = 0;
-    virtual void insArco(nodo, nodo) = 0;
+    virtual void insArco(nodo &, nodo &) = 0;
     virtual void cancNodo(nodo &) = 0;
     //virtual void cancArco(nodo, nodo) = 0;
     //virtual List adiacenti(nodo) = 0;
     virtual bool esisteNodo(nodo &) = 0;
-    //virtual bool esisteArco(nodo, nodo) = 0;
+    virtual bool esisteArco(nodo &, nodo &) = 0;
 
     virtual tipoElem leggiNodo(nodo &) = 0;
     virtual void scriviNodo(nodo &, tipoElem) = 0;
