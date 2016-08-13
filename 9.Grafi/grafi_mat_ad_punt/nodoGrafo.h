@@ -62,12 +62,13 @@ typename Arco<P,N>::peso Arco<P,N>::getPeso() const{
 
 template <class P, class N>
 Arco<P,N>& Arco<P,N>::operator = (const Arco<P,N> &a){
-//  todo
 
 }
 
 template <class P, class N>
 bool Arco<P,N>::operator == (const Arco<P,N> &a) const{
+    //return this->getNodoPunt() == a.getNodoPunt();
+    cout << "BOOM : "<< this->getNodoPunt() << " --- " << a.getNodoPunt() << endl;
     return this->getNodoPunt() == a.getNodoPunt();
 }
 
@@ -84,6 +85,12 @@ bool Arco<P,N>::operator <= (const Arco<P,N> &a) const{
 template <class P, class N>
 bool Arco<P,N>::operator > (const Arco<P,N> &a) const{
     return this->getPeso() > a.getPeso();
+}
+
+template< class P, class N >
+ostream& operator<<(ostream& os, const Arco<P,N> &a){
+    os <<"--> " << a.getNodoPunt() << " - peso: " << a.getPeso();
+    return os;
 }
 
 template < class T, class P> class NodoGrafo{
@@ -142,10 +149,10 @@ typename NodoGrafo<T,P>::tipoElem NodoGrafo<T,P>::getEtichetta() const{
 
 template <class T, class P>
 void NodoGrafo<T,P>::addArco(NodoGrafo &n){
-    Arco<P,NodoGrafo> new_arco;
-    new_arco.setNodoPunt(n);
-    //new_arco->setPeso(1);
-    archi->insert_ordered(new_arco);
+    Arco<P,NodoGrafo> *new_arco = new Arco<P,NodoGrafo>();
+    new_arco->setNodoPunt(n);
+    new_arco->setPeso(1);
+    archi->insert_ordered(*new_arco);
 }
 
 
@@ -155,14 +162,19 @@ void NodoGrafo<T,P>::addArco(NodoGrafo &n){
 
 template <class T, class P>
 bool NodoGrafo<T,P>::cercaArco(NodoGrafo &m){
-    Arco<P,NodoGrafo> a;
-    a.setNodoPunt(m);
-    /*if(archi->linear_ord_search(a) == NULL)
+    Arco<P,NodoGrafo> *a = new Arco<P,NodoGrafo>();
+    a->setNodoPunt(m);
+    cout << "searching in NodoGrafo.cercaArco():" <<endl << "new arco is: " << *a << endl;
+    if(archi->linear_ord_search(*a) == NULL){
+        cout << "searched false" << endl;
         return false;
-    else
-        return true;*/
-        cout << "doing this" << endl;
-        return false;
+        }
+    else{
+        cout << "searched true" << endl;
+        return true;
+        }
+        //cout << "doing this" << endl;
+        //return false;
 }
 
 

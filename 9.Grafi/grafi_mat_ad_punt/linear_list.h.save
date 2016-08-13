@@ -189,10 +189,11 @@ typename Linear_list<T,P>::position Linear_list<T,P>::linear_ord_search (value_t
     cout << "Inside linear_ord_search():" <<endl;
     cout << val << " --- ";
     Linear_list<T,P>::position pos = begin();
+    //cout << read(pos) << endl;
     bool found = false;
     bool not_here = false;
     while(!end(pos) && found == false && not_here == false){
-        cout << read(pos) << endl;
+
         if (val == read(pos)){
             cout << " ...found!" << endl;
             found = true;

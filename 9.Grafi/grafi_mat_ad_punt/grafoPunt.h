@@ -71,12 +71,9 @@ void GrafoPunt<T,P>::insNodo(nodo &n){
 
 template <class T, class P>
 void GrafoPunt<T,P>::insArco(nodo &n, nodo &m){
-    if(esisteNodo(n) && esisteNodo(m)){
         if(!esisteArco(n,m)){
             n.addArco(m);
-
         }
-    }
 }
 
 
@@ -104,6 +101,7 @@ bool GrafoPunt<T,P>::esisteArco(nodo &n, nodo &m){
     if(esisteNodo(n) && esisteNodo(m)){
         return n.cercaArco(m);
     }
+    else return false;
 }
 
 

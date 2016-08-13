@@ -11,6 +11,10 @@ int main()
     GrafoPunt<int,int> g;
     NodoGrafo<int,int> n,m,z;
 
+    //Arco<int,NodoGrafo<int,int>> arc1, arc2;
+    //arc1.setNodoPunt(n);
+    //arc2.setNodoPunt(n);
+
     n.setEtichetta(2);
         cout << "esiste n: " << g.esisteNodo(n) << endl;
     cout << n.getEtichetta() << endl;
@@ -23,22 +27,28 @@ int main()
     z.setEtichetta(6);
     cout << z.getEtichetta() << endl;
     g.insNodo(z);
-    cout << "esiste arco n->m: " << g.esisteArco(n,m) << endl;
+    //cout << "esiste arco n->m: " << g.esisteArco(n,m) << endl;
+
+    //cout << (arc1 == arc2) << endl;
+
+
+
     g.insArco(n,m);
-    cout << "esiste arco n->m: " << g.esisteArco(n,m) << endl;
-    g.print();
+    g.insArco(n,z);
+    //cout << "esiste arco n->m: " << g.esisteArco(n,m) << endl;
+    //g.print();
     //cout << m << endl;
     //cout << (m == n) << endl;
     //cout << "esiste 2? " << g.esisteNodo(n) << endl;
     //cout << "esiste 4? " << g.esisteNodo(m) << endl;
-    cout << g.vuoto()<< endl;
+    //cout << g.vuoto()<< endl;
 
-    cout << g.vuoto()<< endl;
+    //cout << g.vuoto()<< endl;
 
-    cout << "esiste n: " << g.esisteNodo(n) << endl;
+    //cout << "esiste n: " << g.esisteNodo(n) << endl;
 
     //g.scriviNodo(n,3);
-    cout << g.leggiNodo(n) << endl;
+    //cout << g.leggiNodo(n) << endl;
     cout << "Hello world!" << endl;
     return 0;
 }
