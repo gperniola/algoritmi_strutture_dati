@@ -9,7 +9,7 @@ int main()
 {
 
     GrafoPunt<int,int> g;
-    NodoGrafo<int,int> n,m,z;
+    NodoGrafo<int> n,m,z;
 
     //Arco<int,NodoGrafo<int,int>> arc1, arc2;
     //arc1.setNodoPunt(n);

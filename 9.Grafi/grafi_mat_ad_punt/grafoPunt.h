@@ -7,19 +7,20 @@
 
 
 template < class T, class P >
-class GrafoPunt: public Grafo<T, NodoGrafo<T,P>, P>{
+class GrafoPunt: public Grafo<T, NodoGrafo<T>, P>{
 
 public:
-	typedef typename Grafo<T, NodoGrafo<T,P>, P>::nodo nodo;
-	typedef typename Grafo<T, NodoGrafo<T,P>, P>::tipoElem tipoElem;
-	typedef typename Grafo<T, NodoGrafo<T,P>, P>::peso peso;
-	typedef typename Grafo<T, NodoGrafo<T,P>, P>::List List;
+    //typedef P int;
+	typedef typename Grafo<T, NodoGrafo<T>, int>::nodo nodo;
+	typedef typename Grafo<T, NodoGrafo<T>, int>::tipoElem tipoElem;
+	typedef typename Grafo<T, NodoGrafo<T>, int>::peso peso;
+	typedef typename Grafo<T, NodoGrafo<T>, int>::List List;
 
 	/*** constructors ***/
     GrafoPunt();
 
     /*****copy constructor*****/
-    //GrafoPunt(const GrafoPunt<T,P> &);
+    //GrafoPunt(const GrafoPunt<T> &);
 
     /*****destructor*****/
     ~GrafoPunt();
