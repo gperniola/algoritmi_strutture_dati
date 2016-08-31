@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1472567641 source:/home/giuseppe/Documents/github/algoritmi_strutture_dati/9.1Grafi_lite/Grafo/main.cpp
+	<iostream>
+	"grafoPunt.h"
+
+1472571381 /home/giuseppe/Documents/github/algoritmi_strutture_dati/9.1Grafi_lite/Grafo/grafoPunt.h
+	"grafo.h"
+	"nodoGrafo.h"
+
+1472566276 /home/giuseppe/Documents/github/algoritmi_strutture_dati/9.1Grafi_lite/Grafo/grafo.h
+
+1472571381 /home/giuseppe/Documents/github/algoritmi_strutture_dati/9.1Grafi_lite/Grafo/nodoGrafo.h
+
