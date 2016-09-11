@@ -3,17 +3,22 @@
 	<ActiveTarget name="Release" />
 	<File name="main.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="147" topLine="0" />
+			<Cursor1 position="687" topLine="17" />
+		</Cursor>
+	</File>
+	<File name="grafoPunt.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="482" topLine="60" />
 		</Cursor>
 	</File>
 	<File name="grafo.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="234" topLine="0" />
+			<Cursor1 position="234" topLine="4" />
 		</Cursor>
 	</File>
 	<File name="linear_list.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="4996" topLine="162" />
+			<Cursor1 position="4996" topLine="172" />
 		</Cursor>
 	</File>
 	<File name="list_pointer.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -23,12 +28,7 @@
 	</File>
 	<File name="nodoGrafo.h" open="1" top="1" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2196" topLine="113" />
-		</Cursor>
-	</File>
-	<File name="grafoPunt.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2118" topLine="0" />
+			<Cursor1 position="2234" topLine="110" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>
