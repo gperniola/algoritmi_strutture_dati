@@ -101,9 +101,9 @@ public:
 
     struct arco{
         unsigned int peso;
-        NodoGrafo *nodoPunt;
+        NodoGrafo* nodoPunt;
     };
-    typedef List_pointer<arco> listaArchi;
+    typedef List_pointer<arco*> listaArchi;
 
 
 
@@ -161,19 +161,20 @@ typename NodoGrafo<T>::tipoElem NodoGrafo<T>::getEtichetta() const{
 
 template <class T>
 void NodoGrafo<T>::addArco(NodoGrafo &n){
-    arco *new_arco = new arco();
+    arco *new_arco = new arco;
     new_arco->nodoPunt = &n;
     new_arco->peso = 1;
-    archi->insert_ordered(*new_arco);
+    typename listaArchi::position p = archi->begin();
+    archi->insert(new_arco, p);
 }
 
 template <class T>
 bool NodoGrafo<T>::cercaArco(NodoGrafo &m){
-    arco *a = new arco();
+    arco *a = new arco;
     a->nodoPunt = &m;
     a->peso = 1;
     cout << "searching in NodoGrafo.cercaArco():" <<endl << "new arco is: " << a << endl;
-    if(archi->linear_ord_search(*a) == NULL){
+    if(archi->linear_search(a) == NULL){
         cout << "searched false" << endl;
         return false;
         }

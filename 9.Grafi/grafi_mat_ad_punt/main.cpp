@@ -34,7 +34,8 @@ int main()
 
 
     g.insArco(n,m);
-    g.insArco(n,z);
+    g.insArco(n,m);
+    //g.insArco(n,z);
     //cout << "esiste arco n->m: " << g.esisteArco(n,m) << endl;
     //g.print();
     //cout << m << endl;

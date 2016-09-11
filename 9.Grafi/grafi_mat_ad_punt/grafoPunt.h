@@ -14,7 +14,8 @@ public:
 	typedef typename Grafo<T, NodoGrafo<T>, int>::nodo nodo;
 	typedef typename Grafo<T, NodoGrafo<T>, int>::tipoElem tipoElem;
 	typedef typename Grafo<T, NodoGrafo<T>, int>::peso peso;
-	typedef typename Grafo<T, NodoGrafo<T>, int>::List List;
+	typedef typename Grafo<T, NodoGrafo<T>, int>::List ListaAdiacenti;
+	typedef List_pointer<nodo> List;
 
 	/*** constructors ***/
     GrafoPunt();

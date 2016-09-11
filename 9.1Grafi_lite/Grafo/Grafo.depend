@@ -1,0 +1,33 @@
+# depslib dependency file v1.0
+1472832436 source:/home/giuseppe/Documents/GitHub/algoritmi_strutture_dati/9.1Grafi_lite/Grafo/main.cpp
+	<iostream>
+	"grafoPunt.h"
+
+1472827821 /home/giuseppe/Documents/GitHub/algoritmi_strutture_dati/9.1Grafi_lite/Grafo/grafoPunt.h
+	"grafo.h"
+	"nodoGrafo.h"
+
+1472832333 /home/giuseppe/Documents/GitHub/algoritmi_strutture_dati/9.1Grafi_lite/Grafo/grafo.h
+	"list_pointer.h"
+	"coda_punt.h"
+
+1472810098 /home/giuseppe/Documents/GitHub/algoritmi_strutture_dati/9.1Grafi_lite/Grafo/nodoGrafo.h
+
+1467703731 /home/giuseppe/Documents/GitHub/algoritmi_strutture_dati/9.1Grafi_lite/Grafo/list_pointer.h
+	"linear_list.h"
+	"cell.h"
+
+1472740112 /home/giuseppe/Documents/GitHub/algoritmi_strutture_dati/9.1Grafi_lite/Grafo/linear_list.h
+	<typeinfo>
+	<iostream>
+
+1448551739 /home/giuseppe/Documents/GitHub/algoritmi_strutture_dati/9.1Grafi_lite/Grafo/cell.h
+
+1450423310 /home/giuseppe/Documents/GitHub/algoritmi_strutture_dati/9.1Grafi_lite/Grafo/coda_punt.h
+	"coda.h"
+	"cell.h"
+
+1450279421 /home/giuseppe/Documents/GitHub/algoritmi_strutture_dati/9.1Grafi_lite/Grafo/coda.h
+	<typeinfo>
+	<iostream>
+
