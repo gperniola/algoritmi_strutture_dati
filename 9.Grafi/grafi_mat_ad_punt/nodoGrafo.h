@@ -2,10 +2,10 @@
 #define NODOGRAFO_H_
 
 
+#include <iostream>
 
 
-
-template <class P, class N> class Arco{
+/*template <class P, class N> class Arco{
 public:
     typedef P peso;
     typedef N nodoPunt;
@@ -91,13 +91,22 @@ template< class P, class N >
 ostream& operator<<(ostream& os, const Arco<P,N> &a){
     os <<"--> " << a.getNodoPunt() << " - peso: " << a.getPeso();
     return os;
-}
+}*/
 
-template < class T, class P> class NodoGrafo{
-    public:
+
+
+template <class T> class NodoGrafo{
+public:
     typedef T tipoElem;
-    typedef P peso;
-    typedef List_pointer<Arco<P,NodoGrafo>> Lista;
+
+    struct arco{
+        unsigned int peso;
+        NodoGrafo *nodoPunt;
+    };
+    typedef List_pointer<arco> listaArchi;
+
+
+
 
 
     NodoGrafo();
@@ -106,65 +115,64 @@ template < class T, class P> class NodoGrafo{
     tipoElem getEtichetta() const;
     void setEtichetta(tipoElem);
     void addArco(NodoGrafo &);
-    Lista* getArchi();
+    listaArchi* getArchi();
     bool cercaArco(NodoGrafo &);
 
+    NodoGrafo<T>& operator = (const NodoGrafo<T> &);
+    bool operator == (const NodoGrafo<T> &) const;
+    bool operator < (const NodoGrafo<T> &) const;
+    bool operator <= (const NodoGrafo<T> &) const;
+    bool operator > (const NodoGrafo<T> &) const;
 
+    bool operator == (const typename NodoGrafo<T>::arco &) const;
+    bool operator < (const typename NodoGrafo<T>::arco &) const;
+    bool operator <= (const typename NodoGrafo<T>::arco &) const;
+    bool operator > (const typename NodoGrafo<T>::arco &) const;
 
-    NodoGrafo<T,P>& operator = (const NodoGrafo<T,P> &);
-    bool operator == (const NodoGrafo<T,P> &) const;
-    bool operator < (const NodoGrafo<T,P> &) const;
-    bool operator <= (const NodoGrafo<T,P> &) const;
-    bool operator > (const NodoGrafo<T,P> &) const;
-
-    private:
+private:
     tipoElem etichetta;
     int numArchi;
-    Lista* archi;
+    listaArchi* archi;
 
 };
 
 
-template <class T, class P>
-NodoGrafo<T,P>::NodoGrafo(){
-    archi = new List_pointer<Arco<P,NodoGrafo<T,P>>>();
+template <class T>
+NodoGrafo<T>::NodoGrafo(){
+    archi = new listaArchi();
 }
 
-template <class T, class P>
-NodoGrafo<T,P>::~NodoGrafo(){
+template <class T>
+NodoGrafo<T>::~NodoGrafo(){
     //cout << "calling nodo dest" << endl;
 }
 
 
 
-template <class T, class P>
-void NodoGrafo<T,P>::setEtichetta(tipoElem e){
+template <class T>
+void NodoGrafo<T>::setEtichetta(tipoElem e){
     this->etichetta = e;
 }
 
-template <class T, class P>
-typename NodoGrafo<T,P>::tipoElem NodoGrafo<T,P>::getEtichetta() const{
+template <class T>
+typename NodoGrafo<T>::tipoElem NodoGrafo<T>::getEtichetta() const{
     return etichetta;
 }
 
-template <class T, class P>
-void NodoGrafo<T,P>::addArco(NodoGrafo &n){
-    Arco<P,NodoGrafo> *new_arco = new Arco<P,NodoGrafo>();
-    new_arco->setNodoPunt(n);
-    new_arco->setPeso(1);
+template <class T>
+void NodoGrafo<T>::addArco(NodoGrafo &n){
+    arco *new_arco = new arco();
+    new_arco->nodoPunt = &n;
+    new_arco->peso = 1;
     archi->insert_ordered(*new_arco);
 }
 
-
-
-
-
-
-template <class T, class P>
-bool NodoGrafo<T,P>::cercaArco(NodoGrafo &m){
-    Arco<P,NodoGrafo> *a = new Arco<P,NodoGrafo>();
-    a->setNodoPunt(m);
-    cout << "searching in NodoGrafo.cercaArco():" <<endl << "new arco is: " << *a << endl;
+template <class T>
+bool NodoGrafo<T>::cercaArco(NodoGrafo &m){
+    arco *a = new arco();
+    a->nodoPunt = &m;
+    a->peso = 1;
+    cout << "searching in NodoGrafo.cercaArco():" <<endl << "new arco is: " << a << endl;
     if(archi->linear_ord_search(*a) == NULL){
         cout << "searched false" << endl;
         return false;
@@ -178,39 +186,71 @@ bool NodoGrafo<T,P>::cercaArco(NodoGrafo &m){
 }
 
 
-template <class T, class P>
-NodoGrafo<T,P>& NodoGrafo<T,P>::operator = (const NodoGrafo<T,P> &n){
+template <class T>
+NodoGrafo<T>& NodoGrafo<T>::operator = (const NodoGrafo<T> &n){
     etichetta = n.getEtichetta();
 
 }
 
 
-template <class T, class P>
-bool NodoGrafo<T,P>::operator == (const NodoGrafo<T,P> &n) const{
+template <class T>
+bool NodoGrafo<T>::operator == (const NodoGrafo<T> &n) const{
     return this->getEtichetta() == n.getEtichetta();;
 }
 
-template <class T, class P>
-bool NodoGrafo<T,P>::operator < (const NodoGrafo<T,P> &n) const{
+template <class T>
+bool NodoGrafo<T>::operator < (const NodoGrafo<T> &n) const{
     return this->getEtichetta() < n.getEtichetta();
 }
 
 
-template <class T, class P>
-bool NodoGrafo<T,P>::operator <= (const NodoGrafo<T,P> &n) const{
+template <class T>
+bool NodoGrafo<T>::operator <= (const NodoGrafo<T> &n) const{
     return this->getEtichetta() <= n.getEtichetta();
 }
 
-template <class T, class P>
-bool NodoGrafo<T,P>::operator > (const NodoGrafo<T,P> &n) const{
+template <class T>
+bool NodoGrafo<T>::operator > (const NodoGrafo<T> &n) const{
     return getEtichetta() > n.getEtichetta();
 }
 
 
-template< class T, class P >
-ostream& operator<<(ostream& os, const NodoGrafo<T,P> &n){
+template< class T >
+ostream& operator<<(ostream& os, const NodoGrafo<T> &n){
     os << "eti: " << n.getEtichetta();
     return os;
 }
+template<class T>
+std::ostream& operator<<(std::ostream& os,const typename NodoGrafo<T>::arco &a){
+        os <<"--> " << a.nodoPunt << " - peso: " << a.peso;
+        return os;
+}
+
+
+template<class T>
+bool NodoGrafo<T>::operator == (const typename NodoGrafo<T>::arco &a) const{
+    //return this->getNodoPunt() == a.getNodoPunt();
+    //cout << "BOOM : "<< this->getNodoPunt() << " --- " << a.getNodoPunt() << endl;
+    return this->nodoPunt == a.nodoPunt;
+}
+
+template<class T>
+bool NodoGrafo<T>::operator < (const typename NodoGrafo<T>::arco &a) const{
+    return this->peso < a.peso;
+}
+
+template<class T>
+bool NodoGrafo<T>::operator <= (const typename NodoGrafo<T>::arco &a) const{
+    return this->peso <= a.peso;
+}
+
+template<class T>
+bool NodoGrafo<T>::operator > (const typename NodoGrafo<T>::arco &a) const{
+    return this->peso > a.peso;
+}
+
+
+
+
 
 #endif
