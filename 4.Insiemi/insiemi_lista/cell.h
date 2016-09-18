@@ -9,8 +9,6 @@ public:
 
     /*****constructors*****/
     Cell();
-    //Cell(const value_type &);
-    //Cell(value_type &, Cell<T>* p, Cell<T>* n);
 
     /*****destructor*****/
     ~Cell();
@@ -41,19 +39,6 @@ Cell<T>::Cell(){
     this->next = nullptr;
     this->previous = nullptr;
     }
-
-/*template <class T>
-Cell<T>::Cell(const value_type &value){
-    this->element = value;
-    Cell();
-    }*/
-
-/*template <class T>
-Cell<T>::Cell(value_type &value, Cell<T>* p, Cell<T>* n){
-    this->element = value;
-    this->next = n;
-    this->previous = p;
-    }*/
 
 template <class T>
 Cell<T>::~Cell(){}

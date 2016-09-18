@@ -1,0 +1,13 @@
+#include <iostream>
+
+#include "list_pointer.h"
+#include "lista_ordinata.h"
+
+using namespace std;
+
+int main()
+{
+    List_pointer
+
+    return 0;
+}

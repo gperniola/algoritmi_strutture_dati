@@ -1,0 +1,56 @@
+#include "list_pointer.h"
+
+template <class T>
+using List = List_pointer<T>;
+
+template <class T> void inserisci(List<T> &L, T elem);
+template <class T> void rimuovi(List<T> &L, T elem);
+template <class T> void differenza(List<T> &L1, List<T> &L2);
+template <class T> bool sottolista(List<T> L1, List<T> L2);
+
+template <class T> typename List<T>::position linear_ord_search(List<T> L1, T elem);
+
+template <class T> void inserisci(List<T> &L, T elem){
+    auto pos = L.begin();
+    bool inserted = false;
+    cout << "init" << endl;
+    while(!L.end(pos) && inserted == false){
+        if (elem > L.read(pos)){
+            pos = L.next(pos);
+            }
+        else{
+            L.insert(elem, pos);
+            inserted = true;
+        }
+
+    }
+    if (L.end(pos) && inserted == false)
+        L.insert(elem,pos);
+}
+
+template <class T> typename List<T>::position linear_ord_search(List<T> L, T elem){
+    auto pos = L.begin();
+    bool found = false;
+    bool not_here = false;
+
+    while(!L.end(pos) && found == false && not_here == false){
+        if (elem == L.read(pos)){
+            found = true;
+        }
+        else if (elem < L.read(pos)){
+            not_here = true;
+            }
+            else
+                pos = L.next(pos);
+    }
+    if (found == false || not_here == true)
+        return NULL;
+    else if (found == true)
+        return pos;
+}
+
+template <class T> void rimuovi(List<T> L, T elem){
+    auto p = linear_ord_search(L,elem);
+    if(p != NULL)
+        L.erase(p);
+}

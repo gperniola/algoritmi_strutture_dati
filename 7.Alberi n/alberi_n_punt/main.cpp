@@ -36,5 +36,8 @@ int main()
     cout << "after delete: "; A.print();
     A.cancSottoalbero(A.getRadice());
     cout << "after delete: "; A.print();
+
+    cout << "pt" ;
+    //A.postVisita(A.getRadice());
     return 0;
 }

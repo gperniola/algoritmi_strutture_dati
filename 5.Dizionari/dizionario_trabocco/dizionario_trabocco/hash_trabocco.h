@@ -153,7 +153,6 @@ E Hash_trabocco<K,E>::recupera(K& the_key) const{
 template <class K, class E>
 void Hash_trabocco<K,E>::cancella(K& the_key){
     mypair<K,E> pair_in_list(the_key);
-    //auto p;
     bool found = false;
     int i = searchBucket(the_key);   // the home bucket
     auto p = table[i].linear_ord_search(pair_in_list);
