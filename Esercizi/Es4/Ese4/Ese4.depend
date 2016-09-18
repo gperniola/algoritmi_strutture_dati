@@ -1,0 +1,19 @@
+# depslib dependency file v1.0
+1473754549 source:c:\users\giuseppe\desktop\algoritmi_strutture_dati_portare\esercizi\es4\ese4\main.cpp
+	<iostream>
+	"coda_punt.h"
+	"Bins.h"
+
+1473613261 c:\users\giuseppe\desktop\algoritmi_strutture_dati_portare\esercizi\es4\ese4\coda_punt.h
+	"coda.h"
+	"cell.h"
+
+1473613261 c:\users\giuseppe\desktop\algoritmi_strutture_dati_portare\esercizi\es4\ese4\coda.h
+	<typeinfo>
+	<iostream>
+
+1473618407 c:\users\giuseppe\desktop\algoritmi_strutture_dati_portare\esercizi\es4\ese4\cell.h
+
+1473755772 c:\users\giuseppe\desktop\algoritmi_strutture_dati_portare\esercizi\es4\ese4\bins.h
+	"coda_punt.h"
+

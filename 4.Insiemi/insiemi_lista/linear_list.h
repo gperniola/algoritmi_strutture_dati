@@ -47,9 +47,6 @@ public:
     virtual position linear_ord_search (const value_type &);
     virtual void merge_ord(const Linear_list &, const Linear_list &); //merges the two lists inside the obj list
     static void merge_ord_2(Linear_list &, const Linear_list &); //static, merges the second list in the first one
-
-    //TODO bool is_present( value_type) //returns if an element is present in the list.
-    //MORE TO DO
 };
 
 //*****Implementations*****
@@ -172,11 +169,9 @@ void Linear_list<T,P>::insert_ordered(const value_type &val){
 
     while(!end(pos) && inserted == false){
         if (val > read(pos)){
-            //cout << val << " major " << read(pos) <<", skipping" << endl;
             pos = next(pos);
             }
         else{
-            //cout << val << " mineq " << read(pos) <<", inserting" << endl;
             insert(val, pos);
             inserted = true;
         }
@@ -193,13 +188,10 @@ typename Linear_list<T,P>::position Linear_list<T,P>::linear_ord_search (const v
     bool not_here = false;
 
     while(!end(pos) && found == false && not_here == false){
-        //cout << "reading " << read(pos);
         if (val == read(pos)){
-            //cout << " ...found!" << endl;
             found = true;
         }
         else if (val < read(pos)){
-            //cout <<  val << " is minor than " << read(pos) <<", stopping." << endl;
             not_here = true;
             }
             else

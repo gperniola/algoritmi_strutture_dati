@@ -1,0 +1,19 @@
+# depslib dependency file v1.0
+1473694130 source:/home/giuseppe/Desktop/algoritmi_strutture_dati_portare/Esercizi/Lista_ordinata/lista_ordinata/main.cpp
+	<iostream>
+	"list_pointer.h"
+	"lista_ordinata.h"
+
+1473609661 /home/giuseppe/Desktop/algoritmi_strutture_dati_portare/Esercizi/Lista_ordinata/lista_ordinata/list_pointer.h
+	"linear_list.h"
+	"cell.h"
+
+1473613823 /home/giuseppe/Desktop/algoritmi_strutture_dati_portare/Esercizi/Lista_ordinata/lista_ordinata/linear_list.h
+	<typeinfo>
+	<iostream>
+
+1473613836 /home/giuseppe/Desktop/algoritmi_strutture_dati_portare/Esercizi/Lista_ordinata/lista_ordinata/cell.h
+
+1473694231 /home/giuseppe/Desktop/algoritmi_strutture_dati_portare/Esercizi/Lista_ordinata/lista_ordinata/lista_ordinata.h
+	"list_pointer.h"
+

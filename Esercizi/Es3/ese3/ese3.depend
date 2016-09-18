@@ -1,0 +1,22 @@
+# depslib dependency file v1.0
+1473685678 source:/home/giuseppe/Desktop/algoritmi_strutture_dati_portare/Esercizi/Es3/ese3/main.cpp
+	<iostream>
+	"alberoNPunt.h"
+	"util_n_tree.h"
+
+1473609661 /home/giuseppe/Desktop/algoritmi_strutture_dati_portare/Esercizi/Es3/ese3/alberoNPunt.h
+	"alberoN.h"
+	"cell.h"
+	"exceptions.h"
+
+1473609661 /home/giuseppe/Desktop/algoritmi_strutture_dati_portare/Esercizi/Es3/ese3/alberoN.h
+	<iostream>
+
+1473609661 /home/giuseppe/Desktop/algoritmi_strutture_dati_portare/Esercizi/Es3/ese3/cell.h
+
+1473609661 /home/giuseppe/Desktop/algoritmi_strutture_dati_portare/Esercizi/Es3/ese3/exceptions.h
+	<stdexcept>
+
+1473685456 /home/giuseppe/Desktop/algoritmi_strutture_dati_portare/Esercizi/Es3/ese3/util_n_tree.h
+	"alberoNPunt.h"
+

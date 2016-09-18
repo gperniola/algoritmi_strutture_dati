@@ -24,7 +24,6 @@ public:
     bool operator <= (const mypair<K,E> &the_pair) const;
     bool operator < (const mypair<K,E> &the_pair) const;
     bool operator > (const mypair<K,E> &the_pair) const;
-    //ostream& operator << (ostream& os, const mypair<K,E> &the_pair);
 };
 
 template <class K, class E>
@@ -69,7 +68,6 @@ bool mypair<K,E>::operator <= (const mypair<K,E> &the_pair) const{
 template <class K, class E>
 bool mypair<K,E>::operator < (const mypair<K,E> &the_pair) const{
     if(first < the_pair.first){
-    //cout << first << " minor " << the_pair.first << endl;
         return true;
         }
     return false;
@@ -78,7 +76,6 @@ bool mypair<K,E>::operator < (const mypair<K,E> &the_pair) const{
 template <class K, class E>
 bool mypair<K,E>::operator > (const mypair<K,E> &the_pair) const{
     if(first > the_pair.first){
-    //cout << first << " major" << the_pair.first << endl;
         return true;
         }
     return false;

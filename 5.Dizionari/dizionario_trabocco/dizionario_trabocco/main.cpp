@@ -1,9 +1,19 @@
 #include <iostream>
 #include <string>
-
+#include <sstream>
 #include "hash_trabocco.h"
 
 using namespace std;
+
+namespace patch
+{
+    template < typename T > std::string to_string( const T& n )
+    {
+        std::ostringstream stm ;
+        stm << n ;
+        return stm.str() ;
+    }
+}
 
 int main()
 {
@@ -12,8 +22,11 @@ int main()
 
     mypair<string,string> PR;
     for (int i = 0; i < 13; i++){
-        PR.first = to_string(i);
-        PR.second = "VAL" + to_string(i);
+        PR.first = patch::to_string(i);
+        PR.second = "VAL" + patch::to_string(i);
+        //ss << i;
+        //PR.first = ss.str();
+        //PR.second = "VAL" + ss.str();
         ht.inserisci(PR);
     }
     PR.first = "2";
@@ -26,25 +39,33 @@ int main()
 
     string key;
     for (int i = 0; i<15;i++){
-        key = to_string(i);
+        //ss << i;
+        //key = ss.str();
+        key = patch::to_string(i);
      cout << key << " present: " << ht.appartiene(key) << endl;
     }
 
     for (int i = 5; i<10;i++){
-        key = to_string(i);
-     ht.cancella(key);
+        //ss << i;
+        //key = ss.str();
+        key = patch::to_string(i);
+        ht.cancella(key);
     }
 
     ht.stampaDizionario();
 
     for (int i = 0; i<15;i++){
-        key = to_string(i);
+        //ss << i;
+        //key = ss.str();
+        key = patch::to_string(i);
      cout << key << " present: " << ht.appartiene(key) << endl;
     }
 
     string val;
     for (int i = 0; i<15;i++){
-        key = to_string(i);
+        //ss << i;
+        //key = ss.str();
+        key = patch::to_string(i);
         val = ht.recupera(key);
      cout << "value of " << key << ": " << val << endl;
     }
